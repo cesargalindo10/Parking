@@ -4,7 +4,6 @@ import { APISERVICE } from "../../services/api.service";
 import { useDispatch } from "react-redux";
 import { createUser, resetUser } from "../../redux/state/user";
 import { useEffect } from "react";
-
 import "./styles/Login.css";
 export default function Login() {
   const [user, setFormData] = useState({
@@ -93,7 +92,7 @@ export default function Login() {
 
             <div className="signup">
               Eres nuevo?
-              <a href="/registrarse">Crear cuenta</a>
+              <button className="btn-main btn-main__green" onClick={() => navigate('/registrarse')}>Crear cuenta</button>
             </div>
           </form>
         </div>

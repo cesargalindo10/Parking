@@ -96,7 +96,7 @@ export default function Login() {
 
             <div className="signup">
               Ya tienes cueta?
-              <a href="/login">Iniciar Sesion</a>
+              <button className="btn-main btn-main__green" onClick={() => navigate('/login')}>Iniciar Sesion</button>
             </div>
             </form>
         </div>
