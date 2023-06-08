@@ -105,6 +105,7 @@ const CustomerPage = () => {
     const { success, reserve, message} = await APISERVICE.postWithImage(fd, url);
     if(success){
       getInfoReserve();
+      getPlaces();
       setView(navigationNames.HOME);
       messageToastSuccess(message)
     }else{

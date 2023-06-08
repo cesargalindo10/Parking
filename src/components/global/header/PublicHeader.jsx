@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "./styles/Header.css"
-
+import { useNavigate} from 'react-router-dom'
 const PublicHeader = ({children}) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
-
+  const navigate = useNavigate()
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
+    navigate('/login');
   };
 
   return (
@@ -35,7 +36,7 @@ const PublicHeader = ({children}) => {
                 <Link style={{color:"#fff"}}  to="/contacto" className="nav-link" onClick={toggleNav}>Contacto</Link>
               </li>
               <li className="nav-item">
-                <a  href="/login" className={isNavOpen ? "btn btn-primary":"inicio-sesion btn btn-primary"} onClick={toggleNav}>Iniciar Sesion</a>
+                <button  className={isNavOpen ? "btn btn-primary":"inicio-sesion btn btn-primary"} onClick={toggleNav}>Iniciar Sesion</button>
               </li>
             </ul>
           </div>
