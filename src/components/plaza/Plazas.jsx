@@ -114,9 +114,10 @@ const Plazas = () => {
     <div className="parking">
       <h5>Parqueo Nro: 1</h5>
       <div className="d-flex parking-header">
-        <p> <span className="btn-main btn-main__purple"> Purpura: </span> (Solicitud/Couta)</p>
+        <p> <span className="btn-main btn-main__purple"> Purpura: </span> Solicitud</p>
         <p> <span className="btn-main btn-main__red"> Rojo: </span> Asignado</p>
         <p> <span className="btn-main btn-main__orange"> Naranja: </span> camino</p>
+        <p> <span className="btn-main btn-main__green"> Verde: </span> disponible</p>
       </div>
       <ParkingGrilla
         parkingInfo={parkingInfo}

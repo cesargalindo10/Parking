@@ -6,9 +6,11 @@ const ParkingRequestTable = ({requests, pageInfo, getParkingRequest,  setShowReq
     <Table>
       <thead>
         <tr>
+          <th></th>
           <th>Nombre</th>
           <th>Carnet</th>
           <th>Placa</th>
+          <th>Plaza</th>
           <th>Telefono</th>
           <th>Estado</th>
           <th>Acciones</th>

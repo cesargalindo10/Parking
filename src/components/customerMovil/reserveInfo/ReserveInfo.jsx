@@ -92,9 +92,12 @@ const ReserveInfo = ({ infoReserve, setView, information, payFee }) => {
                 : "state-reserve cancel"
             }
           >
-            <p>
-              Estado de Reserva: <span> {infoReserve.estado} </span>
-            </p>
+            {
+              infoReserve.estado === 'pendiente' && infoReserve.couta ?
+              <p>Estado de Reserva: <span> PAGO COUTA </span></p>
+              :
+              <p>Estado de Reserva: <span> {infoReserve.estado} </span></p>
+            }
           </div>
           <div className="info-reserve">
             <h5>Informacion de reserva de parqueo</h5>
