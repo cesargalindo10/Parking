@@ -27,13 +27,14 @@ const CustomerPage = () => {
   const USERID = useSelector(store => store.user.id);
   const [parkingInfo, setParkingInfo] = useState({});
   const [places, setPlaces] = useState([]);
+  const [parkings, setParkings] = useState([])
 
   useEffect(() => {
     getInformation();
     getTarifas();
     getInfoReserve();
     getInfoParking();
-    getPlaces();
+    getParkings();
   }, []);
 
   const getInfoReserve = async () => {
@@ -81,6 +82,9 @@ const CustomerPage = () => {
   const messageToastSuccess = (sms) => {
     toast.success(sms);
   }
+  const messageToastError = (sms) => {
+    toast.error(sms);
+  }
 
   const reserve = async ( info ) => {
     const url = "reserva/create?";
@@ -109,7 +113,7 @@ const CustomerPage = () => {
       setView(navigationNames.HOME);
       messageToastSuccess(message)
     }else{
-
+      messageToastError(message)
     }
     console.log(info)
   };
@@ -134,13 +138,16 @@ const CustomerPage = () => {
       messageToastSuccess(message);
     }
   }
-  const getInfoParking = async () => {
-    const url = "parqueo/get-info-parking";
-    const { success, parking } = await APISERVICE.get(url);
-    
-    if (success) {
-      setParkingInfo(parking);
-    } else {
+  const getInfoParking = async (idParking = 0) => {
+    if(idParking !== 0){
+      const url = "parqueo/get-info-parking/?";
+      const params = `idParking=${idParking}`
+      const { success, parking, places } = await APISERVICE.get(url, params);
+      if (success) {
+        setParkingInfo(parking);
+        setPlaces(places);
+      } else {
+      }
     }
   };
   const getPlaces = async () => {
@@ -151,6 +158,15 @@ const CustomerPage = () => {
     } else {
     }
   };
+
+  const getParkings = async () => {
+    const url = "parqueo/get-parkings";
+    const { success, parkings } = await APISERVICE.get(url);
+    if (success) {
+      setParkings(parkings);
+    } else {
+    }
+  }
 
 
   return (
@@ -165,6 +181,8 @@ const CustomerPage = () => {
             infoReserve={infoReserve}
             parkingInfo={parkingInfo}
             places={places}
+            parkings={parkings}
+            getInfoParking={getInfoParking}
           />
         )}
         {view === navigationNames.RESERVAR && (

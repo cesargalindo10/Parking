@@ -6,6 +6,8 @@ import ModalPlaza from "./ModalNewReserve";
 import ModalShowRequest from "./ModalShowRequest";
 import ModalNewReserve from "./ModalNewReserve";
 import { placeState } from "../customerMovil/home/TableParking";
+import Parkings from "./Parkings";
+import { Toaster, toast } from "react-hot-toast";
 
 const Plazas = () => {
   const [parkingInfo, setParkingInfo] = useState({});
@@ -18,21 +20,35 @@ const Plazas = () => {
   const [customers, setCustomers] = useState()
   const [dates, setDates] = useState({})
   const [place, setPlace] = useState({})
+  const [parkings, setParkings] = useState([])
   useEffect(() => {
     getInfoParking();
-    getPlaces();
+    getParkings();
+    /* getPlaces(); */
     getTarifas();
     getInformation()
     getCustomers()
   }, []);
 
-  const getInfoParking = async () => {
-    const url = "parqueo/get-info-parking";
-    const { success, parking } = await APISERVICE.get(url);
-    
+  const getParkings = async () => {
+    const url = "parqueo/get-parkings";
+    const { success, parkings } = await APISERVICE.get(url);
     if (success) {
-      setParkingInfo(parking);
+      setParkings(parkings);
     } else {
+    }
+  }
+
+  const getInfoParking = async ( idParking = 0) => {
+    if(idParking !== 0){
+      const url = "parqueo/get-info-parking/?";
+      const params = `idParking=${idParking}`;
+      const { success, parking, places } = await APISERVICE.get(url, params);
+      if (success) {
+        setParkingInfo(parking);
+        setPlaces(places)
+      } else {
+      }
     }
   };
 
@@ -44,14 +60,14 @@ const Plazas = () => {
       setCustomers(customers);
     }
   };
-  const getPlaces = async () => {
+ /*  const getPlaces = async () => {
     const url = "plaza/get-places?";
     const { success, places } = await APISERVICE.get(url);
     if (success) {
       setPlaces(places);
     } else {
     }
-  };
+  }; */
 
   const getInfoReserve = async (idPlaza) => {
     const url = "reserva/get-info-reserve-by-plaza/?";
@@ -104,7 +120,7 @@ const Plazas = () => {
     const { success, reserve } = await APISERVICE.postWithImage(fd, url);
     if(success){
       setShowModalNewReserve(false);
-      getPlaces();
+      getInfoParking(parkingInfo.id)
     }else{
 
     }
@@ -112,20 +128,23 @@ const Plazas = () => {
 
   return (
     <div className="parking">
-      <h5>Parqueo Nro: 1</h5>
+     {/*  <h5>Parqueo Nro: 1</h5> */}
+     <Parkings parkings={parkings} getInfoParking={getInfoParking}/>
       <div className="d-flex parking-header">
-        <p> <span className="btn-main btn-main__purple"> Purpura: </span> Solicitud</p>
-        <p> <span className="btn-main btn-main__red"> Rojo: </span> Asignado</p>
-        <p> <span className="btn-main btn-main__orange"> Naranja: </span> camino</p>
-        <p> <span className="btn-main btn-main__green"> Verde: </span> disponible</p>
+        <p> <span className="btn-main btn-parking__purple"> Solicitud </span></p>
+        <p> <span className="btn-main btn-parking__red">Asignado </span></p>
+        <p> <span className="btn-main btn-parking__orange"> Camino </span></p>
+        <p> <span className="btn-main btn-parking__green"> Disponible </span></p>
       </div>
-      <ParkingGrilla
+      {parkingInfo && Object.keys(parkingInfo).length > 0 &&
+        <ParkingGrilla
         parkingInfo={parkingInfo}
         places={places}
         getInfoReserve={getInfoReserve}
         setShowModalNewReserve={setShowModalNewReserve}
         setPlace={setPlace}
-      />
+        />
+      }
       <ModalShowRequest
         show={showModalReserve}
         onHide={setShowModalReserve}
@@ -140,6 +159,7 @@ const Plazas = () => {
         dates={dates}
         reserve={reserve}
       />
+      <Toaster/>
     </div>
   );
 };

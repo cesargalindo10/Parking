@@ -50,10 +50,31 @@
 }
 .parkings-header{
     display: flex;
+    gap: 10px;
 }
 .parkings-header > p {
     background-color: var(--colorMain);
     color: var(--colorWhite);
     padding: 5px 50px;
     border-radius: 10px;
+}
+.selected{
+    color: black;
+    opacity: 0.8;
+}
+.btn-parking__green{
+    border: 1px solid var(--colorGreen);
+    color: var(--colorGreen);
+}
+.btn-parking__red{
+    border: 1px solid var(--colorRed);
+    color: var(--colorRed);
+}
+.btn-parking__purple{
+    border: 1px solid var(--colorMain);
+    color: var(--colorMain);
+}
+.btn-parking__orange{
+    border: 1px solid orange;
+    color: orange;
 }

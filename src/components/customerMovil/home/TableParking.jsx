@@ -21,6 +21,7 @@ const TableParking = ({ placeInformation, setPlaceNumberGlobal, setView }) => {
         <tr>
           <th>Numero</th>
           <th>Estado</th>
+          <th>Parqueo</th>
           <th>Accion</th>
         </tr>
       </thead>
@@ -30,11 +31,19 @@ const TableParking = ({ placeInformation, setPlaceNumberGlobal, setView }) => {
             <tr key={place.id}>
               <td>{place.numero}</td>
               <td>{place.estado}</td>
+              <td>{place.nombre}</td>
               <td>
                 {place.estado === placeState.DISPONIBLE && place.habilitado === true ? (
                   <button className="btn-main btn-main__green" onClick={() => handleReserve(place)}>Reservar</button>
                 ) : (
-                  <button className="btn-main btn-main__red">Resevado</button>
+                  <>
+                  {
+                    !place.habilitado ? 
+                    <button className="btn-main btn-main__red">No disp.</button>
+                    :
+                    <button className="btn-main btn-main__red">Resevado</button>
+                  }
+                  </>
                 )}
               </td>
             </tr>

@@ -14,7 +14,7 @@ const Buscar = ({ placaNumber, setPlacaNumber, getClient, setClientInformation }
 },[])
   return (
     <div className="seeker">
-      <input type="text" placeholder="numero de plaza"  value={placaNumber} onChange={handleInputChange} />
+      <input type="text" placeholder="numero de placa"  value={placaNumber} onChange={handleInputChange} />
       <button className="btn-main btn-main__purple" onClick={() => getClient()}>
         Buscar
       </button>
