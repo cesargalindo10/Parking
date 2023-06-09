@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { navigationNames } from "./CustomerPage";
-
+import {FiLogOut} from "react-icons/fi"
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const heightNavigation = {
   MIN: 0,
   MAX: 140,
@@ -9,6 +11,8 @@ const heightNavigation = {
 
 const Header = ({ setView, children }) => {
   const [heigth, setHeigth] = useState(heightNavigation.MIN);
+  const navigate = useNavigate()
+  const user = useSelector(state => state.user)
 
   const toggle = () => {
     if (heigth === 0) {
@@ -22,13 +26,17 @@ const Header = ({ setView, children }) => {
     setView(view);
     setHeigth(heightNavigation.MIN);
   };
+  const logOut=()=>{
+    navigate("/login")
+ }
 
   return (
     <>
       <header className="header-customer">
         <div className="header-customer__content contenedor">
           <FaBars style={{ color: "#ffffff" }} onClick={toggle} />
-          <p>username</p>
+          <p>Hola, {user.nombre}</p>
+          <button onClick={()=>logOut()} className=' btn-logout tc-white '><FiLogOut/></button>
         </div>
         <div style={{ height: `${heigth}px` }}>
           <ul className={heigth === 0 ? "header-navigation" : "header-navigation-visible"}>
