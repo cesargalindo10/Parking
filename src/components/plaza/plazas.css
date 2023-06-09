@@ -1,5 +1,8 @@
 .parking{
     margin: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 .parking-grilla{
     background-color: rgb(163, 163, 163);
@@ -44,4 +47,13 @@
 }
 .btn-main__orange{
     background-color: orange;
+}
+.parkings-header{
+    display: flex;
+}
+.parkings-header > p {
+    background-color: var(--colorMain);
+    color: var(--colorWhite);
+    padding: 5px 50px;
+    border-radius: 10px;
 }
