@@ -9,10 +9,15 @@
     border-radius: 10px;
 
 }
+.img-content{
+    width: 20%;
+    
+}
 .img-conv{
-    width: 40%;
+    width: 100%;
 }
 .contenido{
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;

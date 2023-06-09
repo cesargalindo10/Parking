@@ -32,9 +32,9 @@ const PublicHeader = ({children}) => {
               <li className="nav-item">
                 <Link style={{color:"#fff"}}  to="/informaciones" className="nav-link" onClick={toggleNav}>Informaciones </Link>
               </li>
-              <li className="nav-item">
+             {/* <li className="nav-item">
                 <Link style={{color:"#fff"}}  to="/contacto" className="nav-link" onClick={toggleNav}>Contacto</Link>
-              </li>
+              </li>*/}
               <li className="nav-item">
                 <button  className={isNavOpen ? "btn btn-primary":"inicio-sesion btn btn-primary"} onClick={toggleNav}>Iniciar Sesion</button>
               </li>

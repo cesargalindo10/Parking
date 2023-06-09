@@ -35,7 +35,10 @@ export default function Informaciones() {
         <h4 className="ms-5">{conv.atencion}</h4>
         <h3 className="mt-4">Convocatoria y Publicaciones</h3>
         <div className="convocatoria">
+          <div className="img-content">
           <img className="img-conv" src={`${APIURLIMG}${conv.convocatoria}`} alt="" />
+          </div>
+
           <div className="contenido">
             <p>{dates.fecha_pub_conv} | Departamento de Informatica y Sistemas</p>
             <Button onClick={handleDownload} variant="secondary" >Descargar</Button>

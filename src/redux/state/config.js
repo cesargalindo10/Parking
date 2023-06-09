@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
+  nombre: "",
   id: "",
-  name: "",
 };
-export const congigSlice = createSlice({
+export const configSlice = createSlice({
   name: "config",
   initialState,
   reducers: {
@@ -18,5 +18,5 @@ export const congigSlice = createSlice({
     }
   },
 });
-export const {createConfig,updateConfig,resetConfig} = congigSlice.actions;
-export default congigSlice.reducer;
+export const {createConfig,updateConfig,resetConfig} = configSlice.actions;
+export default configSlice.reducer;
