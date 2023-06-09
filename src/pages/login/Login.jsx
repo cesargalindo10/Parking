@@ -10,7 +10,7 @@ export default function Login() {
     email: "",
     password: "",
   });
-
+const [error,setError]=useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleInputChange = (event) => {

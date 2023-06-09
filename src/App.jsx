@@ -9,6 +9,7 @@ import Informaciones from "./pages/Informaciones/Informaciones";
 import SigUp from "./pages/login/SigUp"
 import Private from "./pages/private/Private"
 import Login from "./pages/login/Login";
+import Reportes from "./components/reportes/Reportes";
 function App() {
   return (
     <BrowserRouter>
@@ -22,6 +23,7 @@ function App() {
           <Route path="/customer-page" element={<CustomerPage />} />
           <Route path="/informaciones"  element={<Informaciones/>}/>
           <Route path="/registro" element={<SigUp/>}/>
+          <Route path="/reporte" element={<Reportes/>}/>
         </Routes>
        
     </BrowserRouter>

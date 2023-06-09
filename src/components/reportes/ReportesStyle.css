@@ -1,0 +1,191 @@
+p{
+    margin: 0;
+    padding: 0;
+}
+h5{
+    margin: 0;
+    padding: 0;
+}
+.contenedor{
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.section{
+    margin-bottom: 20px;
+}
+.header-customer{
+    background-color: var(--colorMain);
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+.header-customer__content{
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.header-customer p{
+    margin: 0;
+    color: var(--colorWhite);
+}
+@media (min-width: 601px) {
+    .header-customer__content{
+        height: 10vh;
+        width: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    
+    }
+    .header-navigation-visible{
+    visibility: 1;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 15px;
+    color: var(--colorWhite);
+    text-decoration: none;
+    list-style: none;
+    padding: 0;
+    font-size: 18px;
+}
+  }
+.header-navigation{
+    visibility: hidden;
+    margin: 0 auto;
+    display: flex;
+    text-decoration: none;
+    
+}
+.header-navigation-visible{
+    visibility: 1;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    color: var(--colorWhite);
+    text-decoration: none;
+    list-style: none;
+    padding: 0;
+    font-size: 18px;
+}
+.home h5{
+    margin: 10px 0px;
+    text-align: center;
+}
+.home-img{
+    margin-top: 20px;
+}
+.home-img img{
+    width: 100%;
+}
+.seeker input{
+    width: 60%;
+    padding: 5px;
+}
+.seeker{
+    margin: 15px 0px;   
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+}
+.claim{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 15px 0px;
+}
+.claim h5{
+    margin: 0;
+}
+
+.claim textarea{
+    padding: 10px;
+    height: 100px;
+    resize: none;
+}
+
+/* Reservar */
+.reserve-header{
+    display: flex;
+    gap: 10px;
+    margin: 10px 0px;
+    align-items: end;
+}
+.reserve-body{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.reserve-body h5{
+    margin: 0;
+}
+.reserve-body__types{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.qr-img img{
+    width: 100%;
+}
+
+.reserve-btns{
+    display: flex;
+    justify-content: end;
+    gap: 5px;
+    min-width: 60px;
+    padding-bottom: 7px;
+}
+.reserve-btns button{
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--colorMain);
+    color: var(--colorWhite);
+}       
+.state-reserve{
+    padding: 7px 0px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 15px 0px;
+    color: var(--colorBlack);
+}
+.approved{
+    background-color: var(--colorGreen);
+    color: var(--colorWhite);
+}
+.cancel{
+    background-color: var(--colorRed);
+    color: var(--colorWhite);    
+}
+.state-reserve p{
+    margin: 0;
+}
+.state-reserve p span{
+    text-transform: uppercase;
+}
+.info-reserve{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.info-reserve__pay{
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    margin-top: 15px;
+}
+.info-reserve__pay p{
+    margin: 5px 0px;
+}
+.payment-fee{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
