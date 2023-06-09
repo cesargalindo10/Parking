@@ -18,13 +18,12 @@ export default function Config() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const getParkins = async (page = 1) => {
-    let url = "parqueo/?";
-    let params = `page=${page}`;
+  const getParkins = async () => {
+    let url = "parqueo/get-info-parking?";
+    let params = `idParking=${idParking.id}`;
     const response = await APISERVICE.get(url, params);
     if (response.status === 200) {
-      setParkins(response.pageInfo.parkins[0]);
-      setPageInfo(response.pageInfo);
+      setParkins(response.parking);
       console.log(response);
     }
   };
