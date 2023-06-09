@@ -5,7 +5,7 @@ import { APISERVICE } from "../../services/api.service";
 import "./info.css";
 import { Button } from "react-bootstrap";
 import FileDownload from 'react-file-download';
-
+const APIURLIMG = import.meta.env.VITE_REACT_APP_API_URL_IMG;
 export default function Informaciones() {
   const [conv, setConv] = useState([]);
   const [dates, setDates] = useState([]);
@@ -21,7 +21,7 @@ export default function Informaciones() {
     }
   };
   const handleDownload = () => {
-    const imageUrl = `http://localhost:8080/upload/`; // URL de la imagen que quieres descargar
+    const imageUrl = APIURLIMG; // URL de la imagen que quieres descargar
     FileDownload(imageUrl, conv.convocatoria);
   };
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function Informaciones() {
         <h4 className="ms-5">{conv.atencion}</h4>
         <h3 className="mt-4">Convocatoria y Publicaciones</h3>
         <div className="convocatoria">
-          <img className="img-conv" src={`http://localhost:8080/upload/${conv.convocatoria}`} alt="" />
+          <img className="img-conv" src={`${APIURLIMG}${conv.convocatoria}`} alt="" />
           <div className="contenido">
             <p>{dates.fecha_pub_conv} | Departamento de Informatica y Sistemas</p>
             <Button onClick={handleDownload} variant="secondary" >Descargar</Button>

@@ -113,10 +113,11 @@ const Plazas = () => {
   return (
     <div className="parking">
       <h5>Parqueo Nro: 1</h5>
-      <div className="d-flex">
-        <p>Purpura: Reserva</p>
-        <p>Rojo: Asignado</p>
-        <p>Naranfa: camino</p>
+      <div className="d-flex parking-header">
+        <p> <span className="btn-main btn-main__purple"> Purpura: </span> Solicitud</p>
+        <p> <span className="btn-main btn-main__red"> Rojo: </span> Asignado</p>
+        <p> <span className="btn-main btn-main__orange"> Naranja: </span> camino</p>
+        <p> <span className="btn-main btn-main__green"> Verde: </span> disponible</p>
       </div>
       <ParkingGrilla
         parkingInfo={parkingInfo}

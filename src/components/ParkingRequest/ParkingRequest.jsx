@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import ParkingRequestTable from "./ParkingRequestTable";
 import { APISERVICE } from "../../services/api.service";
-//import "./parkingRequest.css";
+import "./parkingRequest.css";
 import ModalRequest from "./ModalRequest";
 import { Toaster, toast } from "react-hot-toast";
 import TablePayments from "./TablePayments";
+import VoucherPrint from "./VoucherPrint";
 
 const ParkingRequest = () => {
   const [requests, setRequests] = useState([]);
@@ -13,8 +14,9 @@ const ParkingRequest = () => {
   const [requestToReserve, setRequestToReserve] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [showRequests, setShowRequests] = useState(true);
-  const [payment, setPayment] = useState({})
-
+  const [payment, setPayment] = useState({});
+  const [showPrinter, setShowPrinter] = useState(false);
+  const [paymentSample, setPaymentSample] = useState({});
   useEffect(() => {
     getParkingRequest();
   }, []);
@@ -26,7 +28,6 @@ const ParkingRequest = () => {
     if (success) {
       setRequests(requests);
       setPageInfo(pageInfo);
-      console.log(requests);
     } else {
     }
   };
@@ -51,16 +52,23 @@ const ParkingRequest = () => {
   };
 
   const confirmPayment = async (pay) => {
+    setPaymentSample(pay);
     const url = "pago/confirm-payment/?";
     const params = `idPayment=${pay.id}`;
     const { success, message } = await APISERVICE.get(url, params);
     if (success) {
       messageToastSuccess(message);
+      if (pay.tipo_pago !== "qr") {
+        setShowPrinter(true);
+      }else{
+        setShowRequests(true);
+      }
       getParkingRequest();
     } else {
       messageToastError(message);
     }
-  }
+  };
+
   return (
     <div className="parking-request">
       {showRequests ? (
@@ -74,7 +82,6 @@ const ParkingRequest = () => {
             setShowRequests={setShowRequests}
             cancelRequest={cancelRequest}
           />
-         
         </section>
       ) : (
         <TablePayments
@@ -85,13 +92,18 @@ const ParkingRequest = () => {
           confirmPayment={confirmPayment}
         />
       )}
-       <ModalRequest
-            onHide={setShowModal}
-            show={showModal}
-            payment={payment}
+      <ModalRequest onHide={setShowModal} show={showModal} payment={payment} />
+      {showPrinter &&
+        requestToReserve &&
+        Object.keys(requestToReserve).length > 0 && (
+          <VoucherPrint
+            requestToReserve={requestToReserve}
+            paymentSample={paymentSample}
+            setShowPrinter={setShowPrinter}
+            setShowRequests={setShowRequests}
           />
-          <Toaster />
-
+        )}
+      <Toaster />
     </div>
   );
 };

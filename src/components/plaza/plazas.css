@@ -35,4 +35,13 @@
 .place-request{
     background-color: var(--colorMain);
 }
-
+.place-couta{
+    background-color: var(--colorGreen);
+}
+.parking-header{
+    display: flex;
+    gap: 10px;
+}
+.btn-main__orange{
+    background-color: orange;
+}
