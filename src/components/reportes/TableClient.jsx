@@ -46,7 +46,7 @@ const TableClient = ({ clientInformation, realiceRegister, registro }) => {
         ) : (
           <tr>
             <td style={{ textAlign: "center" }} colSpan={3}>
-              No existe plaza
+              No existe placa
             </td>
           </tr>
         )}

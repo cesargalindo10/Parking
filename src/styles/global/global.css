@@ -484,3 +484,29 @@ main{
 .mora{
     margin: 50px;
 }
+/*informacion*/
+.convocatoria{
+    
+    padding: 20px;
+    width: 80%;
+    display: flex;
+    margin: 5% auto;
+    background-color: rgb(212, 200, 200);
+    gap: 2%;
+    border-radius: 10px;
+
+}
+.img-content{
+    width: 20%;
+    
+}
+.img-conv{
+    width: 100%;
+}
+.contenido{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
