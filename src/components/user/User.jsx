@@ -9,6 +9,8 @@ export default function User() {
   const [userUpdate, setUserUpdate] = useState({});
   const [modalShow, setModalShow] = useState(false);
   const [pageInfo, setPageInfo] = useState(1);
+  const [roles, setRoles] = useState([]);
+  const [existe, setExiste] = useState(false)
 
   const getUsers = async (page = 1) => {
     let url = "usuario/?";
@@ -17,24 +19,29 @@ export default function User() {
     if (response.status === 200) {
       setUsers(response.pageInfo.users);
       setPageInfo(response.pageInfo)
-      console.log(response);
     }
   };
   const createUser = async (user) => {
     let url = "usuario/create-user";
-    const response = await APISERVICE.post(user, url);
-    if (response.status === 201) {
+    const {success} = await APISERVICE.post(user, url);
+    if (success) {
       console.log("Usuario agregado exitosamente!");
+      setExiste(false)
+    }else{
+      setExiste(true)
     }
     getUsers();
   };
-  const updateUser = async (user) => {
-    let url = `usuario/update?`;
-    let params = `idUser=${user.id}`;
-    const response = await APISERVICE.post(user, url, params);
-    if (response.status === 200) {
+  const updateUser = async (body) => {
+    const url = "usuario/update-user/?";
+    const params = `idUser=${body.id}`
+    const { success } = await APISERVICE.post(body, url, params);
+    if (success) {
       console.log("Usuario Actualizado");
+    }else{
+      setExiste(true)
     }
+    
     getUsers();
   };
   const deleteUser = async (id) => {
@@ -47,15 +54,23 @@ export default function User() {
     }
 
   };
+  const getRoles= async()=>{
+    const url = "usuario/get-roles";
+    const params = ``;
+    const response = await APISERVICE.get(url, params);
+    if (response) {
+      setRoles(response.roles);
+    }
+  }
 
-  console.log(users);
   useEffect(() => {
     getUsers();
+    getRoles();
   }, []);
 
   return (
     <div className="container-user">
-      <h1 className="color-main mt-4 mb-4">Usuarios</h1>
+      <h3 className="color-main mt-4 mb-4">Usuarios</h3>
       <button className="btn-main btn-main__purple mb-3" onClick={()=>setModalShow(true)}>Nuevo</button>
       <UserTable
         users={users}
@@ -72,6 +87,8 @@ export default function User() {
         userUpdate={userUpdate}
         setUserUpdate={setUserUpdate}
         updateUser={updateUser}
+        roles = {roles}
+        existe = {existe}
       />
     </div>
   );
