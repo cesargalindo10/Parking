@@ -15,6 +15,7 @@ import Config from "../../components/config/Config";
 import Plazas from '../../components/plaza/Plazas'
 import Reports from "../../components/reports/Reports";
 import Mora from "../../components/mora/Mora";
+import Roles from "../../components/roles/Roles";
 function Private() {
   return (
     <Sidebar>
@@ -33,6 +34,7 @@ function Private() {
           <Route path="/plazas" element={<Plazas/>} />     
           <Route path="/reportes" element={<Reports/>} />     
           <Route path="/mora" element={<Mora/>} />     
+          <Route path="/roles" element={<Roles/>}/>
 
         </Routes>
       </Header>
