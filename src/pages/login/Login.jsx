@@ -30,6 +30,7 @@ const [error,setError]=useState('');
         email: user.email,
         accessToken: response.accessToken,
         rol: Object.keys(response.rol)[0],
+        permission:response.permission,
         id: response.id,
         nombre:response.nombre
       };
