@@ -7,7 +7,6 @@ const PublicHeader = ({children}) => {
   const navigate = useNavigate()
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
-    navigate('/login');
   };
 
   return (
@@ -36,7 +35,7 @@ const PublicHeader = ({children}) => {
                 <Link style={{color:"#fff"}}  to="/contacto" className="nav-link" onClick={toggleNav}>Contacto</Link>
               </li>*/}
               <li className="nav-item">
-                <button  className={isNavOpen ? "btn btn-primary":"inicio-sesion btn btn-primary"} onClick={toggleNav}>Iniciar Sesion</button>
+                <button  className={isNavOpen ? "btn btn-primary":"inicio-sesion btn btn-primary"} onClick={()=>{toggleNav;navigate('/login')}}>Iniciar Sesion</button>
               </li>
             </ul>
           </div>

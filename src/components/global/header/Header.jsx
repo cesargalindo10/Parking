@@ -12,7 +12,7 @@ export default function Header({children}) {
   return (
     <div>
       <div className="container-header">
-        <h3 className='tc-white pe-4'>hola, {user.nombre}</h3>
+        <h5 className='tc-white pe-4'>hola, {user.nombre}</h5>
         <button onClick={()=>logOut()} className=' btn-logout tc-white pe-4'><FiLogOut/></button>
       </div>
       {children}

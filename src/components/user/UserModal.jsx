@@ -95,7 +95,7 @@ export default function UserModal({ show, onHide, createUser, userUpdate, setUse
           </Form.Group>
           <Form.Group className="mb-3">
             *<Form.Label>Password</Form.Label>
-            <Form.Control type="text" id="password" name="password" value={value.password ? value.password : ""} onChange={handleChange} />
+            <Form.Control type="password" id="password" name="password" value={value.password ? value.password : ""} onChange={handleChange} />
           </Form.Group>
           <Form.Group className="mb-3">
             *<Form.Label>Rol</Form.Label>

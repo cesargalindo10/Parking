@@ -38,6 +38,7 @@ export default function Roles() {
   const handleCreateRol = ()=>{
     if(nombreRol){
         crearRol();
+        setSelectedPermisos([])
         
     }else{
       messageToastError("EL campo no debe estar vacio")
