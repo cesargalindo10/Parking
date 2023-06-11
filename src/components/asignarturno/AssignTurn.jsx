@@ -30,6 +30,7 @@ export default function AssignTurn() {
       messageToastSuccess(message)
       getUsers();
       getTurno();
+      getTurnos()
     }else{
       messageToastError(message);
     }

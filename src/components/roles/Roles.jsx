@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import RolTable from "./RolTable";
 
 const permisos = [
-  "dashboard",
   "parqueo",
   "informacion",
   "usuarios",
