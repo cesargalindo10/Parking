@@ -22,7 +22,7 @@ function Private() {
     <Sidebar>
       <Header>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Parking />} />
           <Route path="/usuarios" element={<User />} />
           <Route path="/customers" element={<Customer />} />
           <Route path="/informacion" element={<Information />} />

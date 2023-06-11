@@ -17,7 +17,6 @@ const Sidebar = ({ children }) => {
   const permission = useSelector(state=>state.user)
   const no=<MdDashboard/>
   const icons = {
-    dashboard:<MdDashboard/>,
     parqueo: <TbParking />,
     informacion: <BsInfoSquareFill />,
     usuarios: <HiUsers />,
