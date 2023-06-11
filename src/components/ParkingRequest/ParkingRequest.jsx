@@ -96,6 +96,7 @@ const ParkingRequest = () => {
     if (success) {
       messageToastSuccess(message);
       getParkingRequest();
+      setShowRequests(true); 
     } else {
       messageToastError(message);
     }  
