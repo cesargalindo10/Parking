@@ -6,12 +6,13 @@ const guardiaValidationFragment = <Navigate replace to="/reporte" />;
 export const AuthGuar = () => {
   const user = useSelector((store) => store.user);
   return user.email ? (
-    user.rol === "administrador" || user.rol === "operador" ? (
-      PrivateValidationFragment
+    user.rol === "cliente"  ? (
+      PublicValidationFragment
+      
     ) : user.rol === "guardia" ? (
       guardiaValidationFragment
     ) : (
-      PublicValidationFragment
+      PrivateValidationFragment
     )
   ) : (
     <Navigate replace to="/login" />
