@@ -3,6 +3,7 @@ const initialState = {
   email: "",
   accessToken: "",
   rol: "",
+  permission:'',
   id: '',
   nombre:''
 };
