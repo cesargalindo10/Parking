@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Form } from "react-bootstrap";
 import "./styles/Parking.css";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function ParkingModal({ show, onHide, createParking, parkingUpdate, setParkingUpdate, updateParking }) {
   const initialValues = {
@@ -22,17 +23,47 @@ export default function ParkingModal({ show, onHide, createParking, parkingUpdat
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    const sms = isValid()
+    if(sms === true){
 
-    if (parkingUpdate.id) {
-      updateParking(value);
+      event.preventDefault();
+      
+      if (parkingUpdate.id) {
+        updateParking(value);
       onHide();
     } else {
       createParking(value);
       onHide();
     }
     setParkingUpdate({});
+    }else{
+      messageToastError(sms)
+    }
   };
+
+  const isValid = () => {
+    if( value.nombre === ''){
+        return 'Nombre es requerido'
+    }
+    if( value.nro_filas === ''){
+      return 'Nro filas es requerido'
+    }
+    if( value.nro_columnas === ''){
+      return 'Nro columnas es requerido'
+    }
+    if( value.nro_filas < 1){
+      return 'Nro filas debe ser entero'
+    }
+    if( value.nro_columnas < 1){
+      return 'Nro columnas debe ser entero'
+    }
+    
+    return true;
+  }
+
+  const messageToastError = (sms) => {
+    toast.error(sms)
+  }
 
   const handleCancel = () => {
     setParkingUpdate({});
@@ -54,14 +85,14 @@ export default function ParkingModal({ show, onHide, createParking, parkingUpdat
         </Modal.Header>
         <Modal.Body className="ms-3 me-3">
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="nombre">Nombre</Form.Label>
+            <Form.Label htmlFor="nombre">Nombre *</Form.Label>
             <Form.Control type="text" id="nombre" name="nombre" value={value.nombre} onChange={handleChange} />
           </Form.Group>
-          <Form.Group className="mb-3">
+        {/*   <Form.Group className="mb-3">
             <Form.Label>Numero de Plazas</Form.Label>
             <Form.Control type="number" id="nro_plazas" name="nro_plazas" value={value.nro_plazas} onChange={handleChange} />
-          </Form.Group>
-          <Form.Group className="mb-3">
+          </Form.Group> */}
+       {/*    <Form.Group className="mb-3">
             <Form.Label>Plazas Disponibles</Form.Label>
             <Form.Control
               type="number"
@@ -70,16 +101,16 @@ export default function ParkingModal({ show, onHide, createParking, parkingUpdat
               value={value.plazas_disponibles}
               onChange={handleChange}
             />
-          </Form.Group>
-          <Form.Group className="mb-3">
+          </Form.Group> */}
+        {/*   <Form.Group className="mb-3">
             <Form.Label>Plazas Ocupadas</Form.Label>
             <Form.Control type="number" id="plazas_ocupadas" name="plazas_ocupadas" value={value.plazas_ocupadas} onChange={handleChange} />
-          </Form.Group>
+          </Form.Group> */}
           <Form.Group className="mb-3">
-            <Form.Label>Numero de Filas</Form.Label>
-            <Form.Control type="number" id="nro_filas" name="nro_filas" value={value.nro_filas} onChange={handleChange} />
-            <Form.Label>Numero de Columnas</Form.Label>
-            <Form.Control type="number" id="nro_columnas" name="nro_columnas" value={value.nro_columnas} onChange={handleChange} />
+            <Form.Label>Numero de Filas *</Form.Label>
+            <Form.Control type="number" id="nro_filas" name="nro_filas" value={value.nro_filas} min={1} onChange={handleChange} />
+            <Form.Label>Numero de Columnas *</Form.Label>
+            <Form.Control type="number" id="nro_columnas" name="nro_columnas" value={value.nro_columnas} min={1} onChange={handleChange} />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Descripcion</Form.Label>
@@ -94,6 +125,7 @@ export default function ParkingModal({ show, onHide, createParking, parkingUpdat
             </button>
           </Form.Group>
         </Modal.Body>
+        <Toaster/>
       </Modal>
     </>
   );

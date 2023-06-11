@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { navigationNames } from "../CustomerPage";
 import { Toaster, toast } from "react-hot-toast";
@@ -21,7 +21,7 @@ const initialState = {
 };
 let dateEnd = '';
 
-const Reserve = ({ tarifas, information, placeNumber, reserve, setView, dates }) => {
+const Reserve = ({ tarifas, information, placeNumber, reserve, setView, dates, getInfoReserve}) => {
   const [reserveInfo, setReserveInfo] = useState(initialState);
 
   const handleOnChange = (e) => {
@@ -34,7 +34,6 @@ const Reserve = ({ tarifas, information, placeNumber, reserve, setView, dates })
       cantidad: 1,
       allowFee: tarifa.couta ? true : false,
     });
-    console.log(reserveInfo);
   };
 
   const handleChangeRadius = (e) => {
@@ -153,7 +152,7 @@ const Reserve = ({ tarifas, information, placeNumber, reserve, setView, dates })
 
   return (
     <section className="section">
-      <h5>Reservar</h5>
+      <h5 className="mt-3">Reservar</h5>
       <div className="reserve-header">
         <Form.Control
           type="number"
@@ -258,6 +257,7 @@ const Reserve = ({ tarifas, information, placeNumber, reserve, setView, dates })
                 type="file"
                 onChange={handleOnChangeFile}
                 name="comprobante"
+                accept="image/png, image/jpeg, image/webp"
               />
             </>
           )}

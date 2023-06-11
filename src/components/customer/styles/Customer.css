@@ -64,3 +64,12 @@
       font-size: 6px;
     }
 }
+
+.icon-eye-customer{
+    position: absolute;
+    top: 38px;
+    right: 10px;
+    z-index: 10;
+    color: black;
+    cursor: pointer;
+}

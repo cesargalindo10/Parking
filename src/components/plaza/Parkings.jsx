@@ -11,7 +11,7 @@ const Parkings = ({parkings, getInfoParking}) => {
     <section className="parkings-header">
         {
             parkings && parkings.length > 0 ?
-                parkings.map(parking => <p className={parking.id == selected ? 'selected':'other'} key={parking.id} onClick={() => handleGetParkingInfo(parking)}>{parking.nombre}</p>) 
+                parkings.map(parking => <button className={parking.id == selected ? 'selected':'other'} key={parking.id} onClick={() => handleGetParkingInfo(parking)}>{parking.nombre}</button>) 
             :
             <p>No existen parqueos</p>
         }

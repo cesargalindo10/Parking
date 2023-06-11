@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import ParkingTable from "./ParkingTable";
 import { APISERVICE } from "../../services/api.service";
 import ParkingModal from "./ParkingModal";
+import { Toaster, toast } from "react-hot-toast";
 //import './styles/Parking.css'
 
 export default function Parking() {
@@ -17,14 +18,15 @@ export default function Parking() {
     if (response.status === 200) {
       setParkins(response.pageInfo.parkins);
       setPageInfo(response.pageInfo)
-      console.log(response);
     }
   };
   const createParking = async (parking) => {
     let url = "parqueo/create";
     const response = await APISERVICE.post(parking, url);
-    if (response.status === 201) {
-      console.log("Parqueo agregado exitosamente!");
+    if (response.success) {
+      messageSuccess(response.message);
+    }else{
+      messageError(response.message);
     }
     getParkins();
   };
@@ -48,14 +50,20 @@ export default function Parking() {
 
   };
 
-  console.log(parkins);
+  const messageError = ( sms ) => {
+    toast.error(sms)
+  }
+  const messageSuccess = (sms) => {
+    toast.success(sms)
+  }
+
   useEffect(() => {
     getParkins();
   }, []);
 
   return (
     <div className="container-user">
-      <h1 className="color-main mt-4 mb-4">Parqueo</h1>
+      <h3 className="color-main mt-4 mb-4">Parqueo</h3>
       <button className="btn-main btn-main__purple mb-3" onClick={()=>setModalShow(true)}>Nuevo</button>
       <ParkingTable
         parkins={parkins}
@@ -73,6 +81,7 @@ export default function Parking() {
         setParkingUpdate={setParkingUpdate}
         updateParking={updateParking}
       />
+      <Toaster/>
     </div>
   );
 }

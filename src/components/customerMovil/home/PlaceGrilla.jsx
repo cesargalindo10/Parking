@@ -1,6 +1,19 @@
+import { Toaster, toast } from "react-hot-toast";
 import { placeState } from "./TableParking";
 
-const PlaceGrilla = ({ parkingInfo, places}) => {
+const PlaceGrilla = ({ parkingInfo, places, getParkingSpace, infoReserve}) => {
+  const handleReserve = (place) => {
+    if(!infoReserve.id && place.estado === 'disponible'){
+      getParkingSpace(place)
+    }else{
+      if(place.habilitado && place.estado === 'disponible'){
+        messageError('Usted ya cuenta con una reserva')
+      }
+    }
+  }
+  const messageError = (sms) => {
+    toast.error(sms)
+  }
   return (
     <div className="">
       <div className="grilla-header"></div>
@@ -19,7 +32,7 @@ const PlaceGrilla = ({ parkingInfo, places}) => {
             if (place.estado === placeState.SOLICITADO)className = className + " place-disabled";
 
             return (
-              <div key={place.id} className={className}>
+              <div key={place.id} className={className} onClick={() => handleReserve(place)}>
                 {place.numero}
               </div>
             );
@@ -28,6 +41,7 @@ const PlaceGrilla = ({ parkingInfo, places}) => {
           <p>No hay plazas</p>
         )}
       </div>
+      <Toaster/>
     </div>
   );
 };

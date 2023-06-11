@@ -4,6 +4,7 @@ import { APISERVICE } from "../../services/api.service";
 import { useDispatch } from "react-redux";
 import { createUser, resetUser } from "../../redux/state/user";
 import { useEffect } from "react";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function Login() {
   const [user, setFormData] = useState({
@@ -37,11 +38,15 @@ const [error,setError]=useState('');
       dispatch(createUser(userLoged));
       navigate(`/dashboard`);
     } else {
+      messageToastError(response.message)
       setError(<p style={{ textAlign: "center", color: "red" }}>*Error de Usuario o Contraseña </p>);
     }
   };
 const handletoRegister=()=>{
   navigate('/registro')
+}
+const messageToastError = (sms) => {
+  toast.error(sms);
 }
   useEffect(() => {
     dispatch(resetUser());
@@ -91,6 +96,7 @@ const handletoRegister=()=>{
             </div>
         </div>
       </div>
+      <Toaster/>
     </div>
   );
 }

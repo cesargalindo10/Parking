@@ -1,7 +1,9 @@
 .reports{
-    margin: 50px;
+    margin: 30px;
 }
-
+.reports > h3{
+    color: var(--colorMain);
+}
 .report-header-seekers{
     display: flex;
     gap: 10px;
@@ -16,4 +18,19 @@
     border-radius: 10px;
     background-color: transparent;
     outline: none;
+}
+
+/* LIST DE REPORTS */
+.parking-header-report{
+    display: flex;
+    gap: 10px;
+}
+.parking-header-report > button{
+    background-color: var(--colorWhite);
+    padding: 5px 50px;
+    border-radius: 10px;
+    border: none;
+    border: 1px solid var(--colorMain);
+    margin: 10px 0px;
+    color: var(--colorMain);
 }

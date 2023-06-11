@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 const heightNavigation = {
   MIN: 0,
-  MAX: 140,
+  MAX: 150,
 };
 
 const Header = ({ setView, children }) => {
@@ -33,18 +33,24 @@ const Header = ({ setView, children }) => {
   return (
     <>
       <header className="header-customer">
-        <div className="header-customer__content contenedor">
-          <FaBars style={{ color: "#ffffff" }} onClick={toggle} />
-          <p>Hola, {user.nombre}</p>
-          <button onClick={()=>logOut()} className=' btn-logout tc-white '><FiLogOut/></button>
-        </div>
-        <div style={{ height: `${heigth}px` }}>
-          <ul className={heigth === 0 ? "header-navigation" : "header-navigation-visible"}>
-            <li onClick={() => handleChangeView(navigationNames.HOME)}>Home</li>
-            {/*     <li onClick={() => handleChangeView(navigationNames.RESERVAR)}>Reservar</li> */}
-            <li onClick={() => handleChangeView(navigationNames.INFORMACION)}>Informacion</li>
-            <li onClick={() => handleChangeView(navigationNames.SUGERENCIAS)}>Sugerencias</li>
-          </ul>
+        <div className="header-customer__all">
+          <div className="hamburguesa">
+            <FaBars  style={{ color: "#ffffff" }} onClick={toggle} />
+          </div>
+          <div /* style={{ height: `${heigth}px` }} */>
+            <ul  className={heigth === 0 ? "nav-he header-navigation" : "header-navigation-visible nav-he"}>
+              <li onClick={() => handleChangeView(navigationNames.HOME)}>Home</li>
+              {/*     <li onClick={() => handleChangeView(navigationNames.RESERVAR)}>Reservar</li> */}
+              <li onClick={() => handleChangeView(navigationNames.INFORMACION)}>Informacion</li>
+              <li onClick={() => handleChangeView(navigationNames.SUGERENCIAS)}>Sugerencias</li>
+              <li onClick={() => handleChangeView(navigationNames.PAGOS)}>Pagos</li>
+              <li onClick={() => handleChangeView(navigationNames.NOTIFICACION)}>Notificaciones</li>
+            </ul>
+          </div>
+          <div className="d-flex align-items-center">
+            {/* <p>Hola, {user.nombre}</p> */}
+            <button onClick={()=>logOut()} className=' btn-logout tc-white '><FiLogOut/></button>
+          </div>
         </div>
       </header>
       {children}

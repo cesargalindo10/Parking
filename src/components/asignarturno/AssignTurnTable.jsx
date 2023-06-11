@@ -9,12 +9,15 @@ export default function AssignTurnTable({
   getUsers
 }) {
   return (
+    <>
+    <h5>Asignacion</h5>
     <Table>
       <thead className="head-table">
         <tr>
           <th style={{borderTopLeftRadius: '10px'}}>Nombre</th>
           <th>Rol</th>
-          <th>Turno</th>
+          <th>Turnos Asignado</th>
+          <th>Turnos</th>
           <th style={{textAlign: 'center', borderTopRightRadius: '10px'}}>Acciones</th>
         </tr>
       </thead>
@@ -22,14 +25,14 @@ export default function AssignTurnTable({
         {users && users.length > 0 ? (
           users.map((us) => (
             <AssignTurnTableRow
-              key={us.user.id}
-              usuario={us}
-              turn={turn}
-              assignTurn={assignTurn}
-              />
-          ))
-        ) : (
-          <tr>
+            key={us.id}
+            usuario={us}
+            turn={turn}
+            assignTurn={assignTurn}
+            />
+            ))
+            ) : (
+              <tr>
             <td colSpan={5}>No existen resultados!</td>
           </tr>
         )}
@@ -40,5 +43,6 @@ export default function AssignTurnTable({
           </tr>
       </tbody>
     </Table>
+    </>
   );
 }

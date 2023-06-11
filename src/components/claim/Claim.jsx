@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ClaimTable from "./ClaimTable"
 import { APISERVICE } from "../../services/api.service";
+import './claim.css'
 const Claim = () => {
 
     useEffect(() => {
@@ -22,7 +23,7 @@ const Claim = () => {
     }
 
   return (
-    <section>
+    <section className="claim-content">
         <h3>Quejas y sugerencias</h3>
         <ClaimTable claims={claims} pageInfo={pageInfo} getClaims={getClaims}/>
     </section>

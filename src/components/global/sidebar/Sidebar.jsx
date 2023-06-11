@@ -29,7 +29,8 @@ const Sidebar = ({ children }) => {
     asignar: <GiDiscussion />,
     reportes: <HiOutlineDocumentReport />,
     mora: <AiTwotoneNotification />,
-    roles:<AiFillControl/>
+    roles:<AiFillControl/>,
+    records: <HiOutlineDocumentReport/>
   }
   
   return (

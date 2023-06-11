@@ -1,8 +1,11 @@
 import { Form } from "react-bootstrap";
 import { placeState } from "../customerMovil/home/TableParking";
+import { useEffect } from "react";
 
 const ParkingGrilla = ({ parkingInfo, places, getInfoReserve, setShowModalNewReserve, setPlace}) => {
-  const handleShowInfoPlace = (place) => {};
+  useEffect(() => {
+    console.log(parkingInfo)
+  },[])
 
   const handleOnClickSpace = (space) => {
     if(space.estado === placeState.ASIGNADO || space.estado === placeState.SOLICITADO){
@@ -26,9 +29,9 @@ const ParkingGrilla = ({ parkingInfo, places, getInfoReserve, setShowModalNewRes
           places.map((place) => {
             let className = "place";
             if (place.habilitado === false) className = className + " place-road";
-            if (place.estado === placeState.DISPONIBLE)className = className + " place-available";
-            if (place.estado === placeState.ASIGNADO)className = className + " place-disabled";
-            if (place.estado === placeState.SOLICITADO)className = className + " place-request";
+            if (place.estado === placeState.DISPONIBLE)className = className + " place-available cursor-pointer";
+            if (place.estado === placeState.ASIGNADO)className = className + " place-disabled cursor-pointer";
+            if (place.estado === placeState.SOLICITADO)className = className + " place-request cursor-pointer";
 
             return (
               <div key={place.id} className={className} onClick={() => handleOnClickSpace(place)}>

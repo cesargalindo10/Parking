@@ -9,11 +9,15 @@ import { APISERVICE } from "../../services/api.service";
 import { Toaster, toast } from "react-hot-toast";
 import { placeState } from "./home/TableParking";
 import { useSelector } from "react-redux";
+import Payments from "./payments/Payments";
+import Notificacion from "./notificaciones/Notificacion";
 export const navigationNames = {
   HOME: "home",
   RESERVAR: "reservar",
   INFORMACION: "informacion",
   SUGERENCIAS: "sugerencias",
+  PAGOS: 'pagos',
+  NOTIFICACION: 'notificacion'
 };
 /* 
 const USERID = 3; */
@@ -21,20 +25,21 @@ const CustomerPage = () => {
   const [view, setView] = useState(navigationNames.HOME);
   const [information, setInformation] = useState({});
   const [tarifas, setTarifas] = useState([]);
-  const [placeNumber, setPlaceNumber] = useState();
+  const [placeNumber, setPlaceNumber] = useState('');
   const [infoReserve, setInfoReserve] = useState({})
   const [dates, setDates] = useState({})
   const USERID = useSelector(store => store.user.id);
   const [parkingInfo, setParkingInfo] = useState({});
   const [places, setPlaces] = useState([]);
   const [parkings, setParkings] = useState([])
-
+  const [notifications, setNotifications] = useState([])
   useEffect(() => {
     getInformation();
     getTarifas();
     getInfoReserve();
     getInfoParking();
     getParkings();
+    getNotificaciones()
   }, []);
 
   const getInfoReserve = async () => {
@@ -115,7 +120,6 @@ const CustomerPage = () => {
     }else{
       messageToastError(message)
     }
-    console.log(info)
   };
 
   const payFee = async (infoPayment, idReserve, isQr) => {
@@ -126,7 +130,8 @@ const CustomerPage = () => {
       reserva_id: idReserve,
       total: infoPayment.total,
       estado: infoPayment.estado,
-      tipo_pago: isQr ? 'qr' : 'efectivo'
+      tipo_pago: isQr ? 'qr' : 'efectivo',
+      estado_plaza: 'pendiente'
     }
 
     const fd = new FormData();
@@ -168,7 +173,15 @@ const CustomerPage = () => {
     }
   }
 
+  const getNotificaciones = async  () => {
+    const url = 'cliente/get-notifications/?'
+    const params = `idCustomer=${USERID}`;
 
+    const { success, notifications } = await APISERVICE.get(url, params);
+    if(success){
+      setNotifications(notifications)
+    }
+  }
   return (
     <>
       <Header setView={setView} />
@@ -196,10 +209,16 @@ const CustomerPage = () => {
           />
         )}
         {view === navigationNames.INFORMACION && 
-        <ReserveInfo infoReserve={infoReserve} setView={setView} information={information} payFee={payFee}/>
+        <ReserveInfo infoReserve={infoReserve} setView={setView} information={information} payFee={payFee} getInfoReserve={getInfoReserve}/>
         }
         {view === navigationNames.SUGERENCIAS && (
           <CustomerClaim sendClaim={sendClaim} />
+        )}
+        {view === navigationNames.PAGOS && (
+          <Payments infoReserve={infoReserve.pagos} getInfoReserve={getInfoReserve} information={information}/>
+        )}
+         {view === navigationNames.NOTIFICACION && (
+          <Notificacion getNotificaciones={getNotificaciones} notifications={notifications}/>
         )}
       </div>
       <Toaster/>

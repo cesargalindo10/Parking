@@ -31,7 +31,7 @@ h5{
     margin: 0;
     color: var(--colorWhite);
 }
-@media (min-width: 601px) {
+/* @media (min-width: 601px) {
     .header-customer__content{
         height: 10vh;
         width: 100vh;
@@ -53,8 +53,8 @@ h5{
     padding: 0;
     font-size: 18px;
 }
-  }
-.header-navigation{
+  } */
+/* .header-navigation{
     visibility: hidden;
     margin: 0 auto;
     display: flex;
@@ -73,7 +73,7 @@ h5{
     list-style: none;
     padding: 0;
     font-size: 18px;
-}
+} */
 .home h5{
     margin: 10px 0px;
     text-align: center;
@@ -189,3 +189,4 @@ h5{
     flex-direction: column;
     gap: 10px;
 }
+

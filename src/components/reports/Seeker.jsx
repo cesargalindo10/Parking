@@ -16,10 +16,6 @@ const Seeker = ({ getReports }) => {
 
   const handleSearch = () => {
     if(isValidDate()){
-        /* const pageNumber = 1;
-        setInfoSeeker(infoSearchSales);
-        getSaleDetails(pageNumber, infoSearchSales); */
-        console.log('first')
         getReports(infoSearchSales)
     }
   };

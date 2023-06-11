@@ -1,7 +1,7 @@
-.mora{
+.records{
     margin: 30px;
-    width: 100%;
 }
-.mora > h3{
+.records > h3{
     color: var(--colorMain);
+    margin-bottom: 20px;
 }

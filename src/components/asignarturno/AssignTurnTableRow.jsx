@@ -16,6 +16,7 @@ console.log(selectedValue)
     <tr>
       <td>{usuario.user.nombre}</td>
       <td>{usuario.user.rol}</td>
+      <td>{usuario.turn_nombre}</td>
       <td className="col-3">
         <Form.Select onChange={handleSelectChange}>
           <option>{usuario.turn_nombre?usuario.turn_nombre:'selecciona un turno'}</option>

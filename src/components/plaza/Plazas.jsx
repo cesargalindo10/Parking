@@ -22,12 +22,12 @@ const Plazas = () => {
   const [place, setPlace] = useState({})
   const [parkings, setParkings] = useState([])
   useEffect(() => {
+    getCustomers()
     getInfoParking();
     getParkings();
     /* getPlaces(); */
     getTarifas();
     getInformation()
-    getCustomers()
   }, []);
 
   const getParkings = async () => {
@@ -52,10 +52,9 @@ const Plazas = () => {
     }
   };
 
-  const getCustomers = async (page = 1) => {
+  const getCustomers = async () => {
     let url = "cliente/get-customers?";
-    let params = `page=${page}`;
-    const {success, customers} = await APISERVICE.get(url, params);
+    const {success, customers} = await APISERVICE.get(url);
     if (success) {
       setCustomers(customers);
     }

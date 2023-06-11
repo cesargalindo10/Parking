@@ -1,6 +1,6 @@
 import { Form } from "react-bootstrap";
 import { navigationNames } from "../CustomerPage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 const APIURLIMG = import.meta.env.VITE_REACT_APP_API_URL_IMG;
 const stateReserve = {
@@ -16,10 +16,14 @@ const initialState = {
   tipoPago: ''
 };
 
-const ReserveInfo = ({ infoReserve, setView, information, payFee }) => {
+const ReserveInfo = ({ infoReserve, setView, information, payFee, getInfoReserve }) => {
   const [showCompletePayment, setShowCompletePayment] = useState(false);
   const [infoPayment, setInfoPayment] = useState(initialState);
   const [showQr, setShowQr] = useState('');
+
+  useEffect(() => {
+    getInfoReserve()
+  },[])
 
   const notExistReserve = (
     <>
@@ -35,14 +39,14 @@ const ReserveInfo = ({ infoReserve, setView, information, payFee }) => {
   );
 
   const calculateBalance = () => {
-    const totalPaid = infoReserve.pagos.reduce((ac, val) => ac + val.total, 0);
+    const totalPaid = infoReserve.pagos.reduce((ac, val) => val.estado ?  ac + val.total: ac, 0);
     const balance = infoReserve.tarifa.costo - totalPaid;
     return balance < 0 ? 0 : balance;
   };
 
   const calculateNroCoutas = () => {
     const nroCoutasPagadas = infoReserve.pagos.reduce(
-      (ac, val) => ac + val.nro_cuotas_pagadas,
+      (ac, val) => val.estado ?  ac + val.nro_cuotas_pagadas: ac,
       0
     );
     return nroCoutasPagadas;

@@ -35,11 +35,12 @@ const Mora = () => {
 
       for (let i = 0; i < customers.length; i++) {
         const element = customers[i];
+        console.log(element);
         emailjs
           .send("service_nc9zurz", "template_sbjywzq", {
-            email: element.email,
             from_name: "SfotwareincorporateSrl",
-            cliente: element.nombre_completo,
+            emailuser: element.cliente.email,
+            to_name: element.cliente.nombre_completo,
             message: information.mensaje_mora,
           })
           .then((response) => {
@@ -49,16 +50,31 @@ const Mora = () => {
             console.error("Error al enviar el correo", error);
           });
       }
-      messageToast('Correos enviados con exito.')
+
+      
+      sendNotification();
     }
   };
   const messageToast = (sms) => {
     toast.success(sms);
   }
 
+  const messageToastError = (sms) => {
+    toast.error(sms);
+  }
+  const sendNotification = async () => {
+    const url = 'reserva/send-notification';
+    const {success, message} = await APISERVICE.get(url);
+    if(success){
+      messageToast(message)
+    }else{
+      messageToastError(message)
+    }
+  }
+
   return (
     <div className="mora">
-      <h5>Clientes con mora</h5>
+      <h3>Clientes con mora</h3>
       <Table>
         <thead>
           <tr>

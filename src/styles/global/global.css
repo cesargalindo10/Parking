@@ -168,29 +168,7 @@ main{
     font-size: 18px;
     color: #6372E7;
 }
-/*component informacion*/
-.information{
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.information h3{
-    color: var(--colorMain);
-}
-
-.information__form{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 50px;
-    place-items: center;
-    margin: 15px 0px;
-}
-
-.information__form-label{
-    width: 100%;
-    margin: 10px 0px;
-}   
+ 
 /*component client o customer*/
 
 .container-customer{
@@ -483,30 +461,4 @@ main{
 /*mora*/
 .mora{
     margin: 50px;
-}
-/*informacion*/
-.convocatoria{
-    
-    padding: 20px;
-    width: 80%;
-    display: flex;
-    margin: 5% auto;
-    background-color: rgb(212, 200, 200);
-    gap: 2%;
-    border-radius: 10px;
-
-}
-.img-content{
-    width: 20%;
-    
-}
-.img-conv{
-    width: 100%;
-}
-.contenido{
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }

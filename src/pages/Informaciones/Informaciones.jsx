@@ -2,14 +2,14 @@ import { useState } from "react";
 import PublicHeader from "../../components/global/header/PublicHeader";
 import { useEffect } from "react";
 import { APISERVICE } from "../../services/api.service";
-//import "./info.css";
+import "./info.css";
 import { Button } from "react-bootstrap";
-import FileDownload from 'react-file-download';
+import FileDownload from "react-file-download";
 const APIURLIMG = import.meta.env.VITE_REACT_APP_API_URL_IMG;
 export default function Informaciones() {
   const [conv, setConv] = useState([]);
   const [dates, setDates] = useState([]);
-
+  const [convocatoria, setConvocatoria] = useState({});
   const getConv = async () => {
     let url = "informacion";
     let params = ``;
@@ -17,33 +17,61 @@ export default function Informaciones() {
     if (response.status === 200) {
       setConv(response.information);
       setDates(response.dates);
-      console.log(conv);
+    }
+  };
+  const getConvocatoria = async () => {
+    const url = "convocatoria/get-convocatoria";
+    const { success, convocatoria } = await APISERVICE.get(url);
+    if (success) {
+      setConvocatoria(convocatoria);
     }
   };
   const handleDownload = () => {
-    const imageUrl = APIURLIMG; // URL de la imagen que quieres descargar
-    FileDownload(imageUrl, conv.convocatoria);
+    FileDownload(APIURLIMG, convocatoria.convocatoria);
   };
   useEffect(() => {
     getConv();
+    getConvocatoria();
   }, []);
   return (
     <div>
       <PublicHeader />
-      <div  className="container">
-        <h3 style={{color:"#ca3a3a"}}>Horarios de Atencion</h3>
-        <h4 className="ms-5">{conv.atencion}</h4>
-        <h3 className="mt-4">Convocatoria y Publicaciones</h3>
-        <div className="convocatoria">
-          <div className="img-content">
-          <img className="img-conv" src={`${APIURLIMG}${conv.convocatoria}`} alt="" />
+      <div className="informacion">
+        <div className="info-content">
+          <div>
+            <h5 className="">Horarios de Atencion</h5>
+            <p className="">{conv.atencion}</p>
           </div>
-
-          <div className="contenido">
-            <p>{dates.fecha_pub_conv} | Departamento de Informatica y Sistemas</p>
-            <Button onClick={handleDownload} variant="secondary" >Descargar</Button>
+          <div>
+            <h5>Contacto</h5>
+            <p>{conv.telefono}</p>
           </div>
         </div>
+        <h5 className="">Convocatoria y Publicaciones</h5>
+        <div className="convocatoria">
+        <div className="pdf-container">
+          {
+            Object.keys(convocatoria).length > 0 && 
+          <object
+          data={`${APIURLIMG}${convocatoria.convocatoria}`}
+          type="application/pdf"
+          className="pdf-convocatoria"
+          ></object>
+        }
+        </div>
+         
+          <div className="contenido">
+            <p>
+              {convocatoria.fecha_inicio_reserva} | Departamento de Informatica
+              y Sistemas
+            </p>
+            <Button onClick={handleDownload} variant="secondary">
+              Descargar
+            </Button>
+          </div>
+        </div>
+
+      
       </div>
     </div>
   );

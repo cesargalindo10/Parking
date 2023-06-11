@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Table } from "react-bootstrap";
 
-const TablePayments = ({ requestToReserve , setShowModal, setPayment, setShowRequests, confirmPayment}) => {
+const TablePayments = ({ requestToReserve , setShowModal, setPayment, setShowRequests, confirmPayment, cancelPayment}) => {
 
     useEffect(() => {
 
@@ -15,6 +15,9 @@ const TablePayments = ({ requestToReserve , setShowModal, setPayment, setShowReq
   const handleConfirm = (pay) => {
     confirmPayment(pay);
     /* setShowRequests(true); */
+  }
+  const handleCancelPayment = (pay) => {
+    cancelPayment(pay.id)
   }
   return (
     <>
@@ -36,7 +39,7 @@ const TablePayments = ({ requestToReserve , setShowModal, setPayment, setShowReq
                 <td>{pay.fecha}</td>
                 <td>{pay.total}</td>
                 <td>
-                    {pay.estado ? 'Aprobado': 'Pendiente'}
+                    {pay.estado_plaza}
                 </td>
                 <td>
                     {pay.tipo_pago === 'qr' ? 
@@ -45,8 +48,8 @@ const TablePayments = ({ requestToReserve , setShowModal, setPayment, setShowReq
                     pay.tipo_pago }
                 </td>
                 <td>
-                 {/*  <button className="btn-main btn-main__red">Cancelar</button>{" "} */}
-                  { !pay.estado && <button className="btn-main btn-main__green" onClick={() => handleConfirm(pay)}>Confirmar</button>}
+                    <button className="btn-main btn-main__green" onClick={() => handleConfirm(pay)}>Confirmar</button>{" "}
+                    <button className="btn-main btn-main__red" onClick={() => handleCancelPayment(pay)}>Cancelar</button>
                 </td>
               </tr>
             ))

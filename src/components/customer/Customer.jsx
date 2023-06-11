@@ -3,6 +3,7 @@ import CustomerTable from "./CustomerTable";
 import { APISERVICE } from "../../services/api.service";
 //import "../customer/styles/Customer.css";
 import CustomerModal from "./CustomerModal";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function Customer() {
   const [customers, setCustomers] = useState([]);
@@ -25,15 +26,28 @@ export default function Customer() {
     const response = await APISERVICE.post(customer, url);
     if (response.status === 201) {
       console.log("Usuario agregado exitosamente!");
+      messageToastSuccess(response.message)
+    }else{
+      messageToastError(response.message)
     }
     getCustomers();
   };
+
+  const messageToastSuccess = (sms) => {
+    toast.success(sms);
+  }
+
+const messageToastError = (sms) => {
+    toast.error(sms);
+  }
   const updateCustomer = async (user) => {
     let url = `usuario/update-customer?`;
     let params = `id=${user.id}`;
     const response = await APISERVICE.post(user, url, params);
     if (response.status === 200) {
-      console.log("Usuario Actualizado");
+      messageToastSuccess(response.message)
+    }else{
+      messageToastError(response.message)
     }
     getCustomers();
   };
@@ -54,7 +68,7 @@ export default function Customer() {
 
   return (
     <div className="container-customer">
-      <h1 className="color-main mt-4 mb-4">Clientes</h1>
+      <h3 className="color-main mt-4 mb-4">Clientes</h3>
       <button className="btn-main btn-main__purple mb-3" onClick={()=>setModalShow(true)}>Nuevo</button>
       <CustomerTable 
         customers={customers}
@@ -72,6 +86,7 @@ export default function Customer() {
         setCustomerUpdate={setCustomerUpdate}
         updateCustomer={updateCustomer}
       />
+      <Toaster/>
     </div>
   );
 }

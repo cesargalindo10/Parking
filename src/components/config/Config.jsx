@@ -66,7 +66,7 @@ const handleTerminar=()=>{
     <div className="container-config">
       <div className="d-flex justify-content-between">
         <h2 className="color-main mt-2 mb-4">Configuracion Parqueo</h2>
-        <button className="mt-4 btn-main btn-main__purple mb-3" onClick={handleTerminar} >Terminar</button>
+        <button className="mt-4 btn-main btn-main__purple mb-3" onClick={handleTerminar} >Volver</button>
       </div>
 
       <GridParking plazas={plazas} parkins={parkins} setModalShow={setModalShow} setPlazaUpdate={setPlazaUpdate} />

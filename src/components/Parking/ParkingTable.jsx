@@ -14,9 +14,11 @@ export default function ParkingTable({
       <thead className="head-table">
         <tr>
           <th style={{borderTopLeftRadius: '10px'}}>Nombre</th>
-          <th>Plazas</th>
-          <th>Plazas Disponibles</th>
-          <th>Plazas Ocupadas</th>
+      {/*     <th>Plazas</th>
+          */}
+          <th>Plazas</th> 
+          <th style={{whiteSpace: 'nowrap'}}>Plazas Hab.</th> 
+          <th>Descripcion</th>
           <th style={{textAlign: 'center', borderTopRightRadius: '10px'}}>Acciones</th>
         </tr>
       </thead>

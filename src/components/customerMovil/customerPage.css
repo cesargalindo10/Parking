@@ -20,6 +20,7 @@ h5{
     top: 0;
     width: 100%;
 }
+
 .header-customer__content{
     height: 65px;
     display: flex;
@@ -31,29 +32,7 @@ h5{
     margin: 0;
     color: var(--colorWhite);
 }
-@media (min-width: 601px) {
-    .header-customer__content{
-        height: 10vh;
-        width: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    
-    }
-    .header-navigation-visible{
-    visibility: 1;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 15px;
-    color: var(--colorWhite);
-    text-decoration: none;
-    list-style: none;
-    padding: 0;
-    font-size: 18px;
-}
-  }
+
 .header-navigation{
     visibility: hidden;
     margin: 0 auto;
@@ -66,14 +45,45 @@ h5{
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 15px;
     color: var(--colorWhite);
     text-decoration: none;
     list-style: none;
     padding: 0;
-    font-size: 18px;
+    font-size: 18px;    
+    margin-top: 17px;
+    align-items: center;
 }
+.header-customer__all{
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    padding: 8px 10px;
+}
+.hamburguesa{
+    margin-top: 12px;
+}
+@media(min-width: 700px){
+    .header-customer__all{  
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px 10px;
+    }
+    
+    .header-navigation-visible{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0;
+    }   
+    .hamburguesa{
+        margin: 0;
+    }
+}
+
+/* HOME */
 .home h5{
     margin: 10px 0px;
     text-align: center;
@@ -196,6 +206,7 @@ h5{
 
 .parkings-header-customer{
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     margin-top: 15px;
 }
@@ -208,4 +219,20 @@ h5{
 .selected-place{
     color: black;
     border: 1px solid var(--colorMain);
+}
+.notificaciones{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.notification-card{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid var(--colorRed);
+    border-radius: 10px;
+    padding: 7px 10px;
+}
+.notification-card > p{
+    margin: 0;
 }

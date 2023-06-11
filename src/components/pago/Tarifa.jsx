@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { APISERVICE } from "../../services/api.service";
 import PayTable from "./TarifaTable";
 import PayModal from "./TarifaModal";
-//import './Tarifa.css'
+import './Tarifa.css'
 import { Toaster, toast } from "react-hot-toast";
 
 
@@ -66,13 +66,13 @@ const Pago = () => {
 
 
   return (
-    <div className="container tarifa">
-      <h3>Pago</h3>
+    <div className="tarifa">
+      <h3>Tarifas</h3>
       <button
         className="btn-main btn-main__purple"
         onClick={() => setShowModal(true)}
       >
-        Nueva Tarija
+        Nueva Tarifa
       </button>
       <PayTable
         payments={payments}

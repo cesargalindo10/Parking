@@ -51,12 +51,14 @@
 .parkings-header{
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
 }
-.parkings-header > p {
+.parkings-header > button{
     background-color: var(--colorMain);
     color: var(--colorWhite);
     padding: 5px 50px;
     border-radius: 10px;
+    border: none;
 }
 .selected{
     color: black;
@@ -77,4 +79,8 @@
 .btn-parking__orange{
     border: 1px solid orange;
     color: orange;
+}
+
+.cursor-pointer{
+    cursor: pointer;
 }

@@ -1,7 +1,9 @@
 .parking-request{
     margin: 30px;
 }
-
+.btn-reserve{
+    color: var(--colorMain);
+}
 .modal-img{
     max-width: 300px;
     margin: 0 auto;
@@ -62,4 +64,10 @@
     padding: 5px;
     color: var(--colorWhite);
     border-radius: 5px;
+}
+/* Buscador cliente */
+.seeker-customer{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
 }

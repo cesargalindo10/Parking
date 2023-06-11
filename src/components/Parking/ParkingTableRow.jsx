@@ -24,13 +24,21 @@ export default function ParkingTableRow({ parkin, deleteParking, setParkingUpdat
     dispatch(createConfig(parkingConf));
     return navigate("/config");
   };
+
+  const calculatePlacesEnables = () => {
+    let res;
+    if(parkin){
+      res = parkin.plazas.reduce( (ac, val) =>  val.habilitado ? ac + 1: ac, 0);
+    }
+    return res;
+  }
   return (
     <tr>
       <td>{parkin.nombre}</td>
-      <td>{parkin.nro_plazas}</td>
-      <td>{parkin.plazas_disponibles}</td>
-      <td>{parkin.plazas_ocupadas}</td>
-      <td className="col-2" style={{ textAlign: "center" }}>
+      <td>{parkin.nro_filas * parkin.nro_columnas}</td> 
+      <td>{calculatePlacesEnables()}</td> 
+      <td>{parkin.descripcion}</td>
+      <td className="col-2" style={{  whiteSpace: 'nowrap' }}>
         <button className="btn-user" onClick={() => handleEditUser()}>
           <FiEdit className="icon" />
         </button>

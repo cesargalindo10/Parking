@@ -1,0 +1,7 @@
+.claim-content{
+    margin: 30px;
+    width: 100%;
+}
+.claim-content > h3{
+    color: var(--colorMain);
+}

@@ -6,19 +6,19 @@ export const placeState = {
   SOLICITADO: "solicitado",
 };
 
-const TableClient = ({ clientInformation, realiceRegister, registro }) => {
+const TableClient = ({ clientInformation, realiceRegister, registro, parking }) => {
   const handleRegistre = (cliId) => {
     realiceRegister(cliId);
     
   };
-  console.log(clientInformation);
-  console.log(registro);
   return (
     <Table>
       <thead>
         <tr>
           <th>Nombre</th>
           <th>Placa</th>
+          <th>Parqueo</th>
+          <th></th>
           <th>Accion</th>
         </tr>
       </thead>
@@ -27,25 +27,17 @@ const TableClient = ({ clientInformation, realiceRegister, registro }) => {
           <tr>
             <td>{clientInformation.nombre_completo}</td>
             <td>{clientInformation.placa}</td>
+            <td>{parking && Object.keys(parking).length > 0 ? parking.nombre : 'No tiene reserva'}</td>
+            <td><button className="btn-main"> { registro && registro.fecha_salida === null ? 'Registrar Salida':  'Registrar Entrada'}</button></td>
             <td>
-              {registro && registro.id? (
-                registro.fecha_ingreso ? (
-                  <button className="btn-main btn-main__red" onClick={() => handleRegistre(clientInformation.id)}>Registrar Salida</button>
-                ) : (
-                  <button className="btn-main btn-main__green" onClick={() => handleRegistre(clientInformation.id)}>
-                    Registrar ingreso
-                  </button>
-                )
-              ) : (
                 <button className="btn-main btn-main__green" onClick={() => handleRegistre(clientInformation.id)}>
-                  Registrar ingreso
+                  Enviar
                 </button>
-              )}
             </td>
           </tr>
         ) : (
           <tr>
-            <td style={{ textAlign: "center" }} colSpan={3}>
+            <td style={{ textAlign: "center" }} colSpan={4}>
               No existe placa
             </td>
           </tr>

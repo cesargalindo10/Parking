@@ -12,9 +12,9 @@ const PayTableRow = ({ pay, setProductToEdit, setShowModal, disablePay }) => {
       <td>{pay.nombre}</td>
       <td>{pay.costo}</td>
       <td>
-        {pay.estado ? <button className="btn-main btn-main__green">Habilitado</button>
+        {pay.estado ? <button style={{cursor: 'auto'}} className="btn-main btn-main__green">Habilitado</button>
          :
-          <button className="btn-main btn-main__red">Inabilitado</button>}
+          <button style={{cursor: 'auto'}} className="btn-main btn-main__red">Inabilitado</button>}
       </td>
       <td style={{ textAlign: "center" }}>
         <button className="btn-main btn-main__red" onClick={handleEdit}>

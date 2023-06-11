@@ -1,7 +1,6 @@
 .information{
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+   /*  width: 100%; */
+    margin: 30px;
 }
 
 .information h3{
@@ -11,7 +10,7 @@
 .information__form{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 50px;
+    gap: 20px;
     place-items: center;
     margin: 15px 0px;
 }
