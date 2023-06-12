@@ -23,12 +23,12 @@ export default function Customer() {
   };
   const createCustomer = async (customer) => {
     let url = "usuario/create-client";
-    const response = await APISERVICE.post(customer, url);
-    if (response.status === 201) {
+    const {success, message} = await APISERVICE.post(customer, url);
+    if (success) {
       console.log("Usuario agregado exitosamente!");
-      messageToastSuccess(response.message)
+      messageToastSuccess(message)
     }else{
-      messageToastError(response.message)
+      messageToastError(message)
     }
     getCustomers();
   };

@@ -72,7 +72,7 @@ export default function AssignTurnModal({ show, onHide, createTurn, turnUpdate, 
     <>
       <Modal show={show} size="lg-sm" aria-labelledby="contained-modal-title-vcenter" centered>
         <Modal.Header>
-          <Modal.Title id="contained-modal-title-vcenter">Crear Turno</Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">{turnoToUpdate.id?"Editar":"Crear"} Turno</Modal.Title>
         </Modal.Header>
         <Modal.Body className="ms-3 me-3">
             <Form.Group className="mb-3">

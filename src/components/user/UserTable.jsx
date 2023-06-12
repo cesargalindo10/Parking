@@ -7,7 +7,8 @@ export default function UserTable({
   setUserUpdate,
   setModalShow,
   pageInfo,
-  getUsers
+  getUsers,
+
 }) {
   return (
     <Table>

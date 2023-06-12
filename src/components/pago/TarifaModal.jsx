@@ -67,7 +67,7 @@ const PayModal = ({ show, onHide, createPay, updatePay, productToEdit, setProduc
     return <Modal show={show} centered>
         <Modal.Header>
             {
-                <h4>Crear nuevo pago</h4>
+                <h4>{infoPay.id?"Editar":"Crear nueva"} tarifa</h4>
             }
         </Modal.Header>
         <Modal.Body className="mb-3">

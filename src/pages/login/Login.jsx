@@ -36,7 +36,7 @@ const [error,setError]=useState('');
         nombre:response.nombre
       };
       dispatch(createUser(userLoged));
-      navigate(`/dashboard`);
+      navigate(`/parqueo`);
     } else {
       messageToastError(response.message)
       setError(<p style={{ textAlign: "center", color: "red" }}>*Error de Usuario o Contraseña </p>);

@@ -7,7 +7,8 @@ export default function ParkingTable({
   setParkingUpdate,
   setModalShow,
   pageInfo,
-  getUsers
+  getUsers,
+  setTitleParking
 }) {
   return (
     <Table>
@@ -31,6 +32,7 @@ export default function ParkingTable({
               deleteParking={deleteParking}
               setParkingUpdate={setParkingUpdate}
               setModalShow={setModalShow}
+              setTitleParking={setTitleParking}
               />
           ))
         ) : (

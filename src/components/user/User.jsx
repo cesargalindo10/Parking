@@ -12,6 +12,7 @@ export default function User() {
   const [roles, setRoles] = useState([]);
   const [existe, setExiste] = useState(false)
 
+
   const getUsers = async (page = 1) => {
     let url = "usuario/?";
     let params = `page=${page}`;
@@ -79,6 +80,7 @@ export default function User() {
         setModalShow={setModalShow}
         pageInfo={pageInfo}
         getUsers={getUsers}
+      
       />
       <UserModal
         show={modalShow}
@@ -89,6 +91,8 @@ export default function User() {
         updateUser={updateUser}
         roles = {roles}
         existe = {existe}
+       
+        
       />
     </div>
   );
