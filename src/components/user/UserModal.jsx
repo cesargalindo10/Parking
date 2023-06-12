@@ -41,7 +41,7 @@ export default function UserModal({
           messageToastError("Usuario con ese Correo ya existe");
         } else {
           updateUser(value);
-          messageToastSuccess("Usuario creado con exito");
+          messageToastSuccess("Usuario actualizado con exito");
           setTimeout(() => {
             onHide();
           }, 1000);
