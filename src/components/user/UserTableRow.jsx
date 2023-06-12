@@ -4,10 +4,12 @@ export default function UserTableRow({
     user,
     deleteUser,
     setUserUpdate,
-    setModalShow, }) {
+    setModalShow,
+  }) {
   const handleEditUser = () => {
     setUserUpdate(user);
     setModalShow(true);
+
     
   };
   const handleDeleteCustomer = () => {

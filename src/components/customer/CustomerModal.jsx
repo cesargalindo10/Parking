@@ -90,7 +90,7 @@ const messageToastError = (sms) => {
     <>
       <Modal show={show} size="lg-sm" aria-labelledby="contained-modal-title-vcenter" centered>
         <Modal.Header>
-          <Modal.Title id="contained-modal-title-vcenter">Crear Usuario</Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">{customerUpdate.id?"Editar":"Crear"} Usuario</Modal.Title>
         </Modal.Header>
         <Modal.Body className="ms-3 me-3">
             <Form.Group className="mb-3">

@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Form } from "react-bootstrap";
 import { Toaster, toast } from "react-hot-toast";
+import { AiFillEye } from "react-icons/ai";
 import "./styles/User.css";
 
-export default function UserModal({ show, onHide, createUser, userUpdate, setUserUpdate, updateUser, roles, existe }) {
+export default function UserModal({
+  show,
+  onHide,
+  createUser,
+  userUpdate,
+  setUserUpdate,
+  updateUser,
+  roles,
+  existe,
+}) {
   const initialValues = {
     nombre: "",
     email: "",
@@ -11,6 +21,7 @@ export default function UserModal({ show, onHide, createUser, userUpdate, setUse
     rol: "",
   };
   const [value, setValue] = useState(initialValues);
+  const [showPassowrd, setShowPassowrd] = useState(false);
 
   const handleChange = (e) => {
     setValue({
@@ -23,21 +34,19 @@ export default function UserModal({ show, onHide, createUser, userUpdate, setUse
     event.preventDefault();
 
     if (userUpdate.id) {
-          if (value.nombre == "" || value.email == "" || value.password == "" || value.rol == "") {
-            messageToastError("los campos no puden estar vacion");
-          } else {
-            if (existe) {
-              messageToastError("Usuario con ese Correo ya existe");
-            } else {
-              updateUser(value);
-              messageToastSuccess("Usuario creado con exito");
-              setTimeout(() => {
-                onHide();
-              }, 1000);
-            }
-          }
-      
-      
+      if (value.nombre == "" || value.email == "" || value.password == "" || value.rol == "") {
+        messageToastError("los campos no puden estar vacion");
+      } else {
+        if (existe) {
+          messageToastError("Usuario con ese Correo ya existe");
+        } else {
+          updateUser(value);
+          messageToastSuccess("Usuario creado con exito");
+          setTimeout(() => {
+            onHide();
+          }, 1000);
+        }
+      }
     } else {
       if (value.nombre == "" || value.email == "" || value.password == "" || value.rol == "") {
         messageToastError("los campos no puden estar vacion");
@@ -79,31 +88,39 @@ export default function UserModal({ show, onHide, createUser, userUpdate, setUse
       <Modal show={show} size="lg-sm" aria-labelledby="contained-modal-title-vcenter" centered>
         <Modal.Header>
           <div>
-            <Modal.Title id="contained-modal-title-vcenter">Crear Usuario</Modal.Title>
-            
+            <Modal.Title id="contained-modal-title-vcenter">{userUpdate.id?"Editar":"Crear"} Usuario</Modal.Title>
           </div>
         </Modal.Header>
         <Modal.Body className="ms-3 me-3">
-        <p style={{fontSize:'13px'}}>los campos con (*) son obligatorios</p>
+          <p style={{ fontSize: "13px" }}>los campos con (*) son obligatorios</p>
           <Form.Group className="mb-3">
-            *<Form.Label htmlFor="nombre">Nombre Completo</Form.Label>
+            <Form.Label htmlFor="nombre">*Nombre Completo</Form.Label>
             <Form.Control type="text" id="nombre" name="nombre" value={value.nombre} onChange={handleChange} />
           </Form.Group>
           <Form.Group className="mb-3">
-            *<Form.Label>Email</Form.Label>
+            <Form.Label>*Email</Form.Label>
             <Form.Control type="email" id="email" name="email" value={value.email} onChange={handleChange} />
           </Form.Group>
-          <Form.Group className="mb-3">
-            *<Form.Label>Password</Form.Label>
-            <Form.Control type="password" id="password" name="password" value={value.password ? value.password : ""} onChange={handleChange} />
+          <Form.Group style={{ position: "relative" }} className="mb-3">
+            <Form.Label>*Password </Form.Label>
+            <Form.Control
+              type={showPassowrd ? "text" : "password"}
+              id="password"
+              name="password"
+              value={value.password ? value.password : ""}
+              onChange={handleChange}
+            />
+            <div className="icon-eye-customer" onClick={() => setShowPassowrd(!showPassowrd)}>
+              <AiFillEye />
+            </div>
           </Form.Group>
           <Form.Group className="mb-3">
-            *<Form.Label>Rol</Form.Label>
+            <Form.Label>*Rol</Form.Label>
             <Form.Select id="rol" name="rol" value={value.rol} onChange={handleChange}>
               <option>{value.rol ? "" : "selecciona un rol"}</option>
               {Object.entries(roles).map(([clave, ro]) => (
                 <option key={clave} value={ro.name}>
-                  {ro.name=="cliente" ?'':ro.description}
+                  {ro.name == "cliente" ? "" : ro.description}
                 </option>
               ))}
             </Form.Select>
