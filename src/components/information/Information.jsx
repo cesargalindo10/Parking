@@ -133,7 +133,7 @@ const Information = () => {
   }
 
   return (
-    <section className="information">
+    <section className="information-global">
       <h3>Informacion</h3>
       <button className="btn-main btn-main__purple"onClick={() => setShowModal(true)}>Nueva Convocatoria</button>
       <TableConvocatorias convocatorias={convocatorias} deleteConvocatoria={deleteConvocatoria}/>

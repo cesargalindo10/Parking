@@ -6,7 +6,7 @@ const TableConvocatorias = ({convocatorias, deleteConvocatoria}) => {
     const navigate = useNavigate()
     const handleShowPdf = (conv) => {
         console.log(conv.convocatoria);
-        window.open(`${APIURLIMG}${conv.convocatoria}/}`, '_blank');
+        window.open(`${APIURLIMG}${conv.convocatoria}`, '_blank');
     }
     const handleDelete = (id) => {
         deleteConvocatoria(id)

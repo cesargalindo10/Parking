@@ -1,9 +1,8 @@
-.information{
-   /*  width: 100%; */
+.information-global{
     margin: 30px;
 }
 
-.information h3{
+.information-global h3{
     color: var(--colorMain);
 }
 

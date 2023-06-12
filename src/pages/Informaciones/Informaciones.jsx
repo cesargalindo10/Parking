@@ -2,7 +2,7 @@ import { useState } from "react";
 import PublicHeader from "../../components/global/header/PublicHeader";
 import { useEffect } from "react";
 import { APISERVICE } from "../../services/api.service";
-import "./info.css";
+//import "./info.css";
 import { Button } from "react-bootstrap";
 import FileDownload from "react-file-download";
 const APIURLIMG = import.meta.env.VITE_REACT_APP_API_URL_IMG;
