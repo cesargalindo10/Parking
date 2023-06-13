@@ -25,7 +25,7 @@ const TableConvocatorias = ({convocatorias, deleteConvocatoria}) => {
             </tr>
             {
                 convocatorias && convocatorias.length > 0 ?
-                convocatorias.map( conv => <tr>
+                convocatorias.map( conv => <tr key={conv.id}>
                     <td>{conv.fecha_inicio_pago}</td>
                     <td>{conv.fecha_limite_reserva}</td>
                     <td>{conv.fecha_inicio_reserva}</td>

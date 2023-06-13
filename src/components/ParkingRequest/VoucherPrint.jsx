@@ -103,7 +103,10 @@ const VoucherPrint = ({ requestToReserve, paymentSample, setShowPrinter, setShow
             
               <View style={styles.sectionHeader}>
                 <Text>Plaza: {plaza.numero} </Text>
-                <Text>Nro coutas pagadas: {paymentSample.nro_cuotas_pagadas}</Text>
+                {
+                  paymentSample.couta &&
+                  <Text>Nro coutas pagadas: {paymentSample.nro_cuotas_pagadas}</Text>
+                }
               </View>
             
               <View style={styles.sectionHeader}>

@@ -35,7 +35,7 @@ const TablePayments = ({ requestToReserve , setShowModal, setPayment, setShowReq
         <tbody>
           {requestToReserve.pagos ? (
             requestToReserve.pagos.map((pay) => (
-              <tr>
+              <tr key={pay.key}>
                 <td>{pay.fecha}</td>
                 <td>{pay.total}</td>
                 <td>
