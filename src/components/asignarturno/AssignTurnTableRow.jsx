@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Form } from "react-bootstrap";
-export default function AssignTurnTableRow({ usuario, turn, assignTurn }) {
+export default function AssignTurnTableRow({ usuario, turnos, assignTurn }) {
   const [selectedValue, setSelectedValue] = useState('');
 
   const handleSelectChange = (event) => {
@@ -11,7 +11,7 @@ export default function AssignTurnTableRow({ usuario, turn, assignTurn }) {
     assignTurn(usuario.user.id,selectedValue);
    
   };
-console.log(selectedValue)
+
   return (
     <tr>
       <td>{usuario.user.nombre}</td>
@@ -20,7 +20,7 @@ console.log(selectedValue)
       <td className="col-3">
         <Form.Select onChange={handleSelectChange}>
           <option>{usuario.turn_nombre?usuario.turn_nombre:'selecciona un turno'}</option>
-          {turn.map((res) => (
+          {turnos.map((res) => (
             <option value={res.id} key={res.id}>{res.nombre}</option>
           ))}
         </Form.Select>

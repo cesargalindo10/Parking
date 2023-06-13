@@ -1,9 +1,10 @@
+import { useEffect } from "react";
 import Paginator from "../global/paginador/Paginator";
 import AssignTurnTableRow from "./AssignTurnTableRow";
 import { Table } from "react-bootstrap";
 export default function AssignTurnTable({ 
   users,
-  turn,
+  turnos,
   assignTurn,
   pageInfo,
   getUsers
@@ -27,7 +28,7 @@ export default function AssignTurnTable({
             <AssignTurnTableRow
             key={us.id}
             usuario={us}
-            turn={turn}
+            turnos={turnos}
             assignTurn={assignTurn}
             />
             ))

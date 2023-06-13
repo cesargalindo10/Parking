@@ -1,5 +1,5 @@
 import { InputGroup, Form } from "react-bootstrap";
-import "./information.css";
+//mport "./information.css";
 import { useEffect, useState } from "react";
 import { APISERVICE } from "../../services/api.service";
 import { Toaster, toast } from "react-hot-toast";
@@ -137,7 +137,7 @@ const Information = () => {
       <h3>Informacion</h3>
       <button className="btn-main btn-main__purple"onClick={() => setShowModal(true)}>Nueva Convocatoria</button>
       <TableConvocatorias convocatorias={convocatorias} deleteConvocatoria={deleteConvocatoria}/>
-      <ModalConvocatoria show={showModal} onHide={setShowModal}  createConvocatoria={createConvocatoria}/>
+      <ModalConvocatoria show={showModal} onHide={setShowModal}  createConvocatoria={createConvocatoria} convocatorias={convocatorias}/>
       <h4 className="mt-5">Informacion global</h4>
       <div className="information__form">
 

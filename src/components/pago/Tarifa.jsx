@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { APISERVICE } from "../../services/api.service";
 import PayTable from "./TarifaTable";
 import PayModal from "./TarifaModal";
-import './Tarifa.css'
+//import './Tarifa.css'
 import { Toaster, toast } from "react-hot-toast";
 
 

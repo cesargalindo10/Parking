@@ -524,4 +524,48 @@ main{
     }
 }
 
- 
+ /* Informacion */
+
+
+ .information-global{
+    margin: 30px;
+}
+
+.information-global h3{
+    color: var(--colorMain);
+}
+
+.information__form{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    place-items: center;
+    margin: 15px 0px;
+}
+
+.information__form-label{
+    width: 100%;
+    margin: 10px 0px;
+}   
+/* Tarifa */
+.tarifa{ 
+    margin: 30px;
+}
+.tarifa > button{
+    margin: 15px 0px;    
+}
+.tarifa > h3{
+    color: var(--colorMain);
+    margin: 10px 0 0 0;
+}
+.table-head{
+    background-color: var(--colorMain);
+    color: var(--colorWhite);
+}
+/* Claim */
+.claim-content{
+    margin: 30px;
+}
+.claim-content > h3{
+    color: var(--colorMain);
+}

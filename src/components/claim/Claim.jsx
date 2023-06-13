@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ClaimTable from "./ClaimTable"
 import { APISERVICE } from "../../services/api.service";
-import './claim.css'
+//import './claim.css'
 const Claim = () => {
 
     useEffect(() => {

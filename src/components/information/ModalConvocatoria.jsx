@@ -9,7 +9,15 @@ const initialState = {
   fecha_fin_reserva: "",
 };
 
-export const ModalConvocatoria = ({ show, onHide, createConvocatoria }) => {
+const date = new Date();
+const month =
+  date.getMonth() + 1 > 9
+    ? date.getMonth() + 1
+    : "0" + (date.getMonth() + 1);
+const day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate();
+const dateCurrently = `${date.getFullYear()}-${month}-${day}`;
+
+export const ModalConvocatoria = ({ show, onHide, createConvocatoria, convocatorias}) => {
   const [information, setInformation] = useState(initialState);
   const [imgConvocatoria, setImgConvocatoria] = useState({valid: false, img:{}});
   useEffect(() => {
@@ -47,13 +55,12 @@ export const ModalConvocatoria = ({ show, onHide, createConvocatoria }) => {
       fecha_fin_reserva,
       qr,
     } = information;
-    const date = new Date();
-    const month =
-      date.getMonth() + 1 > 9
-        ? date.getMonth() + 1
-        : "0" + (date.getMonth() + 1);
-    const day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate();
-    const dateCurrently = `${date.getFullYear()}-${month}-${day}`;
+   
+    
+    /* if(convocatorias.length > 0 && dateCurrently < convocatorias[0].fecha_fin_reserva){
+      return "Ya existe una convocatoria";
+    }
+
     if (!imgConvocatoria.valid) {
       return "Convocatoria no debe estar en blanco";
     }
@@ -68,44 +75,75 @@ export const ModalConvocatoria = ({ show, onHide, createConvocatoria }) => {
     }
     if (fecha_fin_reserva === "") {
       return "Fecha fin reserve no debe estar en blanco";
-    }
+    } */
    
-   
-
+    let newDate = getDataPlusSevenDays(fecha_inicio_pago);
+    console.log(newDate)
     if (
-      fecha_inicio_pago < dateCurrently ||
-      fecha_inicio_pago > fecha_limite_reserva ||
-      fecha_inicio_pago > fecha_inicio_reserva ||
-      fecha_inicio_pago > fecha_fin_reserva
+      newDate < dateCurrently ||
+      newDate > fecha_limite_reserva ||
+      newDate > fecha_inicio_reserva ||
+      newDate > fecha_fin_reserva
     ) {
       return "Revise las fechas";
     }
+     newDate = getDataPlusSevenDays(fecha_limite_reserva);
     if (
-      fecha_limite_reserva < dateCurrently ||
-      fecha_limite_reserva < fecha_inicio_pago ||
-      fecha_limite_reserva > fecha_inicio_reserva ||
-      fecha_limite_reserva > fecha_fin_reserva
+      newDate < dateCurrently ||
+      newDate < fecha_inicio_pago ||
+      newDate > fecha_inicio_reserva ||
+      newDate > fecha_fin_reserva
     ) {
       return "Revise las fechas";
     }
+     newDate = getDataPlusSevenDays(fecha_inicio_reserva);
     if (
-      fecha_inicio_reserva < dateCurrently ||
-      fecha_inicio_reserva < fecha_inicio_pago ||
-      fecha_inicio_reserva < fecha_limite_reserva ||
-      fecha_inicio_reserva > fecha_fin_reserva
+      newDate < dateCurrently ||
+      newDate < fecha_inicio_pago ||
+      newDate < fecha_limite_reserva ||
+      newDate > fecha_fin_reserva
     ) {
       return "Revise las fechas";
     }
+     newDate = getDataPlusSevenDays(fecha_fin_reserva);
     if (
-      fecha_fin_reserva < dateCurrently ||
-      fecha_fin_reserva < fecha_inicio_pago ||
-      fecha_fin_reserva < fecha_limite_reserva ||
-      fecha_fin_reserva < fecha_inicio_reserva
+      newDate < dateCurrently ||
+      newDate < fecha_inicio_pago ||
+      newDate < fecha_limite_reserva ||
+      newDate < fecha_inicio_reserva
     ) {
       return "Revise las fechas";
     }
     return true;
   };
+
+  const getDataPlusSevenDays = (dateToModified) => {
+     
+    let dayFilter = dateToModified.slice(8,10)
+    let monthFilter = dateToModified.slice(5,7);
+    let yearFilter = date.getFullYear();
+    
+    if(Number(dayFilter) + 6 > 30){
+      dayFilter = Number( dayFilter) + 6 - 30;      
+      dayFilter = dayFilter < 10 ? '0' + dayFilter : dayFilter
+
+      if(Number(monthFilter) + 1 > 12){
+        monthFilter = '01';  
+        yearFilter = date.getFullYear() + 1;
+      }else{
+        monthFilter = Number(monthFilter) + 1;
+      monthFilter = monthFilter < 10 ? '0' + monthFilter : monthFilter
+
+      }
+      
+    }else{
+      dayFilter = Number(dayFilter) + 6;
+      dayFilter = dayFilter < 10 ? '0' + dayFilter : dayFilter
+    }
+
+
+    return `${yearFilter}-${monthFilter}-${dayFilter}`;
+  }
 
   return (
     <Modal show={show} centered>
@@ -113,6 +151,9 @@ export const ModalConvocatoria = ({ show, onHide, createConvocatoria }) => {
         <h5>Reserva</h5>
       </Modal.Header>
       <Modal.Body>
+        {
+          convocatorias.length > 0 && dateCurrently < convocatorias[0].fecha_fin_reserva &&  <p style={{color: 'red', textAlign: 'center'}}>*Ya existe una convocatoria.</p>
+        }
           <InputGroup>
             <label className="information__form-label" htmlFor="convocatoria">
               Convocatoria *
@@ -121,6 +162,7 @@ export const ModalConvocatoria = ({ show, onHide, createConvocatoria }) => {
               type="file"
               onChange={handleOnChangeFile}
               name="imgConvocatoria"
+              accept=".pdf"
             />
           </InputGroup>
 

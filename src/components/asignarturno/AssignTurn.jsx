@@ -42,6 +42,7 @@ export default function AssignTurn() {
     if (success) {
       getTurnos()
       getUsers();
+      getTurno();
       messageToastSuccess(message)
     }else{
       messageToastError(message)
@@ -82,10 +83,12 @@ const deleteTurno = async (id) => {
   const url = 'turno/delete-turno/?';
   const params = `id=${id}`
   const {success, message} = await APISERVICE.get(url, params);
-  if ( success) {}
+  if ( success) {
     getTurnos();
     getUsers();
+    getTurno();
     messageToastSuccess(message)
+  }
   }
   
 
@@ -99,10 +102,10 @@ const deleteTurno = async (id) => {
     <div className="container-user">
       <h3 className="color-main mt-4 mb-4">Asignar Turno</h3>
       <button className="btn-main btn-main__purple mb-3" onClick={()=>setModalShow(true)}>Nuevo Turno</button>
-      <TableTurnos turnos={turnos} setTurnoToUpdate={setTurnoToUpdate} setModalShow={setModalShow} deleteTurno={deleteTurno}/>
+      <TableTurnos turnos={turn} setTurnoToUpdate={setTurnoToUpdate} setModalShow={setModalShow} deleteTurno={deleteTurno}/>
       <AssignTurnTable
         users={users}
-        turn={turn}
+        turnos={turnos}
         assignTurn={assignTurn}
         pageInfo={pageInfo}
         getUsers={getUsers}
