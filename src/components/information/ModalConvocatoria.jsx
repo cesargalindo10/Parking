@@ -57,7 +57,7 @@ export const ModalConvocatoria = ({ show, onHide, createConvocatoria, convocator
     } = information;
    
     
-    /* if(convocatorias.length > 0 && dateCurrently < convocatorias[0].fecha_fin_reserva){
+    if(convocatorias.length > 0 && dateCurrently < convocatorias[0].fecha_fin_reserva){
       return "Ya existe una convocatoria";
     }
 
@@ -75,7 +75,7 @@ export const ModalConvocatoria = ({ show, onHide, createConvocatoria, convocator
     }
     if (fecha_fin_reserva === "") {
       return "Fecha fin reserve no debe estar en blanco";
-    } */
+    }
    
     let newDate = getDataPlusSevenDays(fecha_inicio_pago);
     console.log(newDate)
