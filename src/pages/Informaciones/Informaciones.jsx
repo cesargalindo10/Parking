@@ -62,7 +62,7 @@ export default function Informaciones() {
          
           <div className="contenido">
             <p>
-              {convocatoria.fecha_inicio_reserva} | Departamento de Informatica
+              {convocatoria.fecha_inicio_reserva} | {convocatoria.fecha_fin_reserva} | Departamento de Informatica
               y Sistemas
             </p>
             <Button onClick={handleDownload} variant="secondary">
